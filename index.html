@@ -4,604 +4,687 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KundliChecking.com — Free Kundli, Panchang & Daily Rashifal Online</title>
-<meta name="description" content="Check your free Kundli online at KundliChecking.com. Get your Janam Kundli, Daily Panchang, Rashifal and Vedic horoscope instantly. India's trusted Vedic astrology platform.">
-<meta name="keywords" content="kundli check online free, janam kundli, free kundli, panchang today, rashifal, kundli checking, vedic astrology, horoscope hindi">
-<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+<title>KundliChecking.com — Free Kundli, Panchang & Rashifal Online</title>
+<meta name="description" content="Check your free Kundli online at KundliChecking.com. Get your Janam Kundli, Daily Panchang, Rashifal in 8 Indian languages. India's trusted Vedic astrology platform.">
+<meta name="keywords" content="kundli check online free, janam kundli, free kundli, panchang today, rashifal, vedic astrology, horoscope hindi, कुंडली">
+<link rel="canonical" href="https://kundlichecking.com/">
+<meta property="og:title" content="KundliChecking.com — Free Kundli Online">
+<meta property="og:description" content="India's trusted free Kundli checker. Birth chart, daily panchang and rashifal — free in 8 languages.">
+<meta property="og:url" content="https://kundlichecking.com/">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html { scroll-behavior: smooth; }
+/* ── RESET & BASE ── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Crimson Pro',Georgia,serif;background-color:#FEF6E4;color:#1E0808;overflow-x:hidden;line-height:1.6;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+img{max-width:100%;display:block;}
 
-body {
-font-family: ‘Crimson Pro’, Georgia, serif;
-background-color: #FEF6E4;
-color: #1E0808;
-overflow-x: hidden;
-}
+/* ── SKIP LINK (Accessibility) ── */
+.skip-link{position:absolute;top:-40px;left:0;background:#2A0505;color:#FFD740;padding:8px 16px;z-index:99999;border-radius:0 0 8px 0;transition:top 0.3s;}
+.skip-link:focus{top:0;}
 
 /* ── NAVBAR ── */
-#navbar {
-position: fixed; top: 0; left: 0; right: 0; z-index: 999;
-background-color: #2A0505;
-border-bottom: 2px solid #C8940A;
-height: 58px;
-display: -webkit-flex; display: flex;
--webkit-align-items: center; align-items: center;
--webkit-justify-content: space-between; justify-content: space-between;
-padding: 0 1.2rem;
-box-shadow: 0 3px 20px rgba(0,0,0,0.5);
-}
+#navbar{position:fixed;top:0;left:0;right:0;z-index:9999;background-color:#2A0505;border-bottom:2px solid #C8940A;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 1.2rem;box-shadow:0 3px 20px rgba(0,0,0,0.5);}
+.nav-logo{font-family:‘Yatra One’,serif;font-size:1.15rem;color:#FFD740;text-decoration:none;display:flex;align-items:center;gap:7px;white-space:nowrap;}
+.nav-logo span{color:#FF8C20;}
+.nav-links{display:flex;gap:0.2rem;list-style:none;align-items:center;}
+.nav-links li a,.nav-links li button{color:rgba(254,246,228,0.82);font-size:0.85rem;padding:0.3rem 0.7rem;border-radius:15px;transition:all 0.2s;background:none;border:none;display:block;cursor:pointer;}
+.nav-links li a:hover,.nav-links li button:hover,.nav-links li a:focus,.nav-links li button:focus{background-color:rgba(200,148,10,0.25);color:#FFD740;outline:2px solid rgba(200,148,10,0.5);}
+.nav-cta{background:linear-gradient(135deg,#E8660A,#C8940A)!important;color:white!important;font-weight:700;border-radius:15px!important;}
+.nav-cta:hover{opacity:0.9;}
+.lang-select{background-color:rgba(200,148,10,0.15);border:1px solid rgba(200,148,10,0.4);color:#FFD740;padding:0.25rem 0.5rem;border-radius:8px;font-size:0.82rem;cursor:pointer;outline:none;-webkit-appearance:none;}
+.lang-select option{background-color:#2A0505;color:#FEF6E4;}
+.lang-select:focus{outline:2px solid #C8940A;}
+.hmenu{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;aria-label:Menu;}
+.hmenu span{width:22px;height:2px;background-color:#FFD740;display:block;border-radius:2px;transition:all 0.3s;}
 
-.nav-logo {
-font-family: ‘Yatra One’, serif;
-font-size: 1.2rem;
-color: #FFD740;
-text-decoration: none;
-display: -webkit-flex; display: flex;
--webkit-align-items: center; align-items: center;
-gap: 8px;
-}
+/* Mobile dropdown */
+#mobileMenu{display:none;position:fixed;top:58px;left:0;right:0;z-index:9998;background-color:#2A0505;border-bottom:2px solid #C8940A;padding:0.8rem 1.2rem;flex-direction:column;gap:0.3rem;box-shadow:0 8px 20px rgba(0,0,0,0.5);}
+#mobileMenu.open{display:flex;}
+#mobileMenu a,#mobileMenu button{color:rgba(254,246,228,0.85);font-size:1rem;padding:0.6rem 0.8rem;border-radius:8px;border:none;border-bottom:1px solid rgba(200,148,10,0.15);background:none;text-align:left;width:100%;cursor:pointer;}
+#mobileMenu a:hover,#mobileMenu button:hover{background-color:rgba(200,148,10,0.2);color:#FFD740;}
 
-.nav-logo span { color: #FF8C20; }
-
-.nav-menu {
-display: -webkit-flex; display: flex;
-gap: 0.2rem; list-style: none;
-}
-
-.nav-menu a {
-color: rgba(254,246,228,0.8);
-text-decoration: none;
-font-size: 0.85rem;
-padding: 0.3rem 0.7rem;
-border-radius: 15px;
-transition: all 0.2s;
-}
-
-.nav-menu a:hover { background-color: rgba(200,148,10,0.25); color: #FFD740; }
-
-.nav-cta-btn {
-background: linear-gradient(135deg, #E8660A, #C8940A) !important;
-color: white !important;
-font-weight: 700;
-}
+@media(max-width:680px){.nav-links{display:none;}.hmenu{display:flex;}}
 
 /* ── HERO ── */
-#hero {
-min-height: 100vh;
-padding-top: 58px;
-background-color: #2A0505;
-background-image:
-radial-gradient(ellipse at 20% 50%, rgba(180,60,0,0.3) 0%, transparent 60%),
-radial-gradient(ellipse at 80% 30%, rgba(180,120,0,0.2) 0%, transparent 50%);
-position: relative;
-display: -webkit-flex; display: flex;
--webkit-align-items: center; align-items: center;
--webkit-justify-content: center; justify-content: center;
-overflow: hidden;
-}
-
-#starCanvas {
-position: absolute; top: 0; left: 0;
-width: 100%; height: 100%;
-pointer-events: none;
-}
-
-.dring {
-position: absolute;
-border-radius: 50%;
-border: 1px solid rgba(200,148,10,0.1);
-top: 50%; left: 50%;
--webkit-transform: translate(-50%,-50%);
-transform: translate(-50%,-50%);
-pointer-events: none;
-}
-.dring:nth-child(1) { width: 280px; height: 280px; -webkit-animation: rot 30s linear infinite; animation: rot 30s linear infinite; }
-.dring:nth-child(2) { width: 480px; height: 480px; border-color: rgba(232,102,10,0.08); -webkit-animation: rot 50s linear infinite reverse; animation: rot 50s linear infinite reverse; }
-.dring:nth-child(3) { width: 680px; height: 680px; -webkit-animation: rot 80s linear infinite; animation: rot 80s linear infinite; }
-
-@-webkit-keyframes rot { to { -webkit-transform: translate(-50%,-50%) rotate(360deg); } }
-@keyframes rot { to { transform: translate(-50%,-50%) rotate(360deg); } }
-
-.hero-content {
-position: relative; z-index: 10;
-text-align: center;
-padding: 2rem 1.5rem;
-max-width: 720px;
-width: 100%;
-}
-
-.hero-badge {
-display: inline-block;
-background-color: rgba(200,148,10,0.15);
-border: 1px solid rgba(200,148,10,0.35);
-border-radius: 30px;
-padding: 0.35rem 1rem;
-color: #E8B000;
-font-size: 0.78rem;
-letter-spacing: 1.5px;
-text-transform: uppercase;
-margin-bottom: 1.2rem;
-}
-
-.hero-om {
-font-family: ‘Noto Sans Devanagari’, sans-serif;
-font-size: 3rem;
-color: #FFD740;
-display: block;
-margin-bottom: 0.5rem;
-text-shadow: 0 0 40px rgba(255,215,64,0.5);
--webkit-animation: omfloat 4s ease-in-out infinite;
-animation: omfloat 4s ease-in-out infinite;
-}
-
-@-webkit-keyframes omfloat {
-0%,100% { -webkit-transform: translateY(0); }
-50% { -webkit-transform: translateY(-8px); }
-}
-@keyframes omfloat {
-0%,100% { transform: translateY(0); }
-50% { transform: translateY(-8px); }
-}
-
-.hero-title {
-font-family: ‘Yatra One’, serif;
-font-size: clamp(2.4rem, 9vw, 5rem);
-line-height: 1.1;
-margin-bottom: 0.3rem;
-color: #FFD740;
-}
-
-.hero-title .hl2 { color: #FF8C20; }
-.hero-title .hl3 { color: rgba(254,246,228,0.35); font-size: 0.5em; }
-.hero-title .hl4 { color: rgba(254,246,228,0.5); font-size: 0.45em; vertical-align: middle; }
-
-.hero-hindi {
-font-family: ‘Noto Sans Devanagari’, sans-serif;
-font-size: 0.95rem;
-color: rgba(254,246,228,0.55);
-letter-spacing: 2px;
-margin-bottom: 1rem;
-}
-
-.hero-tagline {
-font-size: clamp(0.95rem, 2.5vw, 1.15rem);
-color: rgba(254,246,228,0.75);
-line-height: 1.7;
-font-style: italic;
-margin-bottom: 2rem;
-}
-
-.hero-stats {
-display: -webkit-flex; display: flex;
--webkit-justify-content: center; justify-content: center;
-gap: 2rem; flex-wrap: wrap;
-margin-bottom: 2rem;
-}
-
-.stat-num { font-family: ‘Yatra One’, serif; font-size: 1.5rem; color: #FFD740; display: block; }
-.stat-lbl { font-size: 0.7rem; color: rgba(254,246,228,0.45); text-transform: uppercase; letter-spacing: 1px; }
-
-.btn-primary {
-display: inline-block;
-background: linear-gradient(135deg, #E8660A, #C8940A);
-color: white;
-text-decoration: none;
-padding: 0.85rem 1.8rem;
-border-radius: 6px;
-font-family: ‘Crimson Pro’, serif;
-font-size: 1rem;
-font-weight: 600;
-margin: 0.3rem;
-border: none;
-cursor: pointer;
-box-shadow: 0 4px 20px rgba(232,102,10,0.4);
-transition: all 0.3s;
--webkit-appearance: none;
-}
-
-.btn-outline {
-display: inline-block;
-background: transparent;
-color: #FFD740;
-text-decoration: none;
-padding: 0.85rem 1.8rem;
-border-radius: 6px;
-font-family: ‘Crimson Pro’, serif;
-font-size: 1rem;
-margin: 0.3rem;
-border: 1.5px solid rgba(200,148,10,0.5);
-cursor: pointer;
-transition: all 0.3s;
-}
+#home{min-height:100vh;padding-top:58px;background-color:#2A0505;background-image:radial-gradient(ellipse at 20% 50%,rgba(180,60,0,0.3) 0%,transparent 60%),radial-gradient(ellipse at 80% 30%,rgba(180,120,0,0.2) 0%,transparent 50%);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+#starCanvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+.dring{position:absolute;border-radius:50%;border:1px solid rgba(200,148,10,0.1);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.dring:nth-child(1){width:280px;height:280px;animation:rot 30s linear infinite;}
+.dring:nth-child(2){width:500px;height:500px;border-color:rgba(232,102,10,0.08);animation:rot 55s linear infinite reverse;}
+.dring:nth-child(3){width:720px;height:720px;animation:rot 90s linear infinite;}
+@keyframes rot{to{transform:translate(-50%,-50%) rotate(360deg);}}
+.hero-content{position:relative;z-index:10;text-align:center;padding:2rem 1.5rem;max-width:720px;width:100%;}
+.hero-badge{display:inline-block;background-color:rgba(200,148,10,0.15);border:1px solid rgba(200,148,10,0.35);border-radius:30px;padding:0.35rem 1rem;color:#E8B000;font-size:0.78rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:1.2rem;}
+.hero-om{font-family:‘Noto Sans Devanagari’,sans-serif;font-size:3rem;color:#FFD740;display:block;margin-bottom:0.5rem;text-shadow:0 0 40px rgba(255,215,64,0.5);animation:omfloat 4s ease-in-out infinite;}
+@keyframes omfloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+.hero-title{font-family:‘Yatra One’,serif;font-size:clamp(2.2rem,8vw,4.8rem);line-height:1.1;margin-bottom:0.3rem;color:#FFD740;}
+.hero-title .hl2{color:#FF8C20;}
+.hero-title .hl3{color:rgba(254,246,228,0.35);font-size:0.5em;}
+.hero-title .hl4{color:rgba(254,246,228,0.5);font-size:0.45em;vertical-align:middle;}
+.hero-hindi{font-family:‘Noto Sans Devanagari’,sans-serif;font-size:0.95rem;color:rgba(254,246,228,0.55);letter-spacing:2px;margin-bottom:1rem;}
+.hero-tagline{font-size:clamp(0.95rem,2.5vw,1.15rem);color:rgba(254,246,228,0.75);line-height:1.7;font-style:italic;margin-bottom:2rem;}
+.hero-stats{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-bottom:2rem;}
+.stat-num{font-family:‘Yatra One’,serif;font-size:1.5rem;color:#FFD740;display:block;}
+.stat-lbl{font-size:0.7rem;color:rgba(254,246,228,0.45);text-transform:uppercase;letter-spacing:1px;}
+.btn-primary{display:inline-block;background:linear-gradient(135deg,#E8660A,#C8940A);color:white;padding:0.85rem 1.8rem;border-radius:6px;font-family:‘Crimson Pro’,serif;font-size:1rem;font-weight:600;margin:0.3rem;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(232,102,10,0.4);transition:all 0.3s;}
+.btn-primary:hover,.btn-primary:focus{transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,102,10,0.55);outline:none;}
+.btn-outline{display:inline-block;background:transparent;color:#FFD740;padding:0.85rem 1.8rem;border-radius:6px;font-family:‘Crimson Pro’,serif;font-size:1rem;margin:0.3rem;border:1.5px solid rgba(200,148,10,0.5);cursor:pointer;transition:all 0.3s;}
+.btn-outline:hover,.btn-outline:focus{background:rgba(200,148,10,0.12);outline:none;}
 
 /* ── TRUST BAR ── */
-#trustbar {
-background-color: #1E0404;
-border-top: 1px solid rgba(200,148,10,0.25);
-border-bottom: 1px solid rgba(200,148,10,0.25);
-padding: 0.9rem 0;
-overflow: hidden;
-}
-
-.marquee-track {
-display: -webkit-flex; display: flex;
-gap: 2.5rem;
-white-space: nowrap;
--webkit-animation: marquee 22s linear infinite;
-animation: marquee 22s linear infinite;
-}
-
-@-webkit-keyframes marquee { from { -webkit-transform: translateX(0); } to { -webkit-transform: translateX(-50%); } }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-.mq-item { display: inline-block; color: rgba(254,246,228,0.6); font-size: 0.82rem; -webkit-flex-shrink: 0; flex-shrink: 0; }
-.mq-item strong { color: #E8B000; }
+#trustbar{background-color:#1E0404;border-top:1px solid rgba(200,148,10,0.25);border-bottom:1px solid rgba(200,148,10,0.25);padding:0.9rem 0;overflow:hidden;}
+.marquee-track{display:flex;gap:2.5rem;white-space:nowrap;animation:marquee 28s linear infinite;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.mq-item{display:inline-block;color:rgba(254,246,228,0.6);font-size:0.82rem;flex-shrink:0;}
+.mq-item strong{color:#E8B000;}
 
 /* ── SECTIONS ── */
-.sec-dark {
-padding: 4.5rem 1.2rem;
-background-color: #1A0303;
-background-image:
-radial-gradient(ellipse at 10% 50%, rgba(180,60,0,0.08) 0%, transparent 50%),
-radial-gradient(ellipse at 90% 20%, rgba(180,120,0,0.08) 0%, transparent 50%);
-}
+.sec-dark{padding:4.5rem 1.2rem;background-color:#1A0303;background-image:radial-gradient(ellipse at 10% 50%,rgba(180,60,0,0.08) 0%,transparent 50%),radial-gradient(ellipse at 90% 20%,rgba(180,120,0,0.08) 0%,transparent 50%);}
+.sec-panchang{padding:4.5rem 1.2rem;background-color:#150303;background-image:radial-gradient(ellipse at 15% 60%,rgba(160,50,0,0.1) 0%,transparent 55%);}
+.sec-light{padding:4.5rem 1.2rem;background-color:#F9EDD0;}
+.container{max-width:1000px;margin:0 auto;}
+.sec-hd{text-align:center;margin-bottom:2.5rem;}
+.ornament{display:flex;align-items:center;justify-content:center;gap:0.8rem;margin-bottom:0.6rem;}
+.orn-l{height:1px;width:45px;background:linear-gradient(90deg,transparent,#C8940A);}
+.orn-r{height:1px;width:45px;background:linear-gradient(90deg,#C8940A,transparent);}
+.orn-star{color:#E8660A;font-size:0.9rem;}
+.orn-gold .orn-l{background:linear-gradient(90deg,transparent,#FFD740);}
+.orn-gold .orn-r{background:linear-gradient(90deg,#FFD740,transparent);}
+.orn-gold .orn-star{color:#FFD740;}
+.sec-title{font-family:‘Yatra One’,serif;font-size:clamp(1.7rem,5vw,2.6rem);color:#2A0505;margin-bottom:0.35rem;line-height:1.2;}
+.sec-title-light{font-family:‘Yatra One’,serif;font-size:clamp(1.7rem,5vw,2.6rem);color:#FFD740;margin-bottom:0.35rem;line-height:1.2;}
+.sec-sub{font-size:1rem;color:#6B3A20;font-style:italic;}
+.sec-sub-light{font-size:1rem;color:rgba(254,246,228,0.55);font-style:italic;}
 
-.sec-panchang {
-padding: 4.5rem 1.2rem;
-background-color: #150303;
-background-image: radial-gradient(ellipse at 15% 60%, rgba(160,50,0,0.1) 0%,transparent 55%),
-radial-gradient(ellipse at 85% 25%, rgba(160,110,0,0.1) 0%,transparent 50%);
-}
+/* ── KUNDLI FORM ── */
+.kundli-card{background-color:#2A0505;background-image:linear-gradient(145deg,#1E0303,#3A0808 60%,#2A0808);border-radius:14px;padding:2rem 1.5rem;border:1px solid rgba(200,148,10,0.5);box-shadow:0 20px 60px rgba(30,3,3,0.4);max-width:820px;margin:0 auto;}
+.kc-title{font-family:‘Yatra One’,serif;color:#FFD740;font-size:1.3rem;margin-bottom:0.2rem;}
+.kc-sub{color:rgba(254,246,228,0.45);font-size:0.88rem;font-style:italic;margin-bottom:1.5rem;}
+.form-row{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;}
+.fg{display:flex;flex-direction:column;gap:0.3rem;flex:1;min-width:160px;}
+.fg label{color:#E8B000;font-size:0.78rem;letter-spacing:0.8px;text-transform:uppercase;}
+.required-star{color:#FF6B6B;margin-left:2px;}
+.fg input,.fg select{background-color:rgba(255,255,255,0.08);border:1px solid rgba(200,148,10,0.35);border-radius:7px;padding:0.65rem 0.85rem;color:#FEF6E4;font-family:‘Crimson Pro’,serif;font-size:0.95rem;outline:none;-webkit-appearance:none;appearance:none;width:100%;transition:border-color 0.2s;}
+.fg input:focus,.fg select:focus{border-color:#FFD740;background-color:rgba(255,255,255,0.12);box-shadow:0 0 0 3px rgba(200,148,10,0.15);}
+.fg input::placeholder{color:rgba(254,246,228,0.35);}
+.fg select option{background-color:#2A0505;color:#FEF6E4;}
+.fg .hint{font-size:0.72rem;color:rgba(254,246,228,0.35);font-style:italic;margin-top:0.15rem;}
+.field-error{font-size:0.72rem;color:#FF8888;margin-top:0.15rem;display:none;}
+.fg.invalid input,.fg.invalid select{border-color:#FF6B6B;}
+.fg.invalid .field-error{display:block;}
+.gen-btn{width:100%;background:linear-gradient(135deg,#E8660A,#C8940A);color:white;border:none;padding:1rem;font-family:‘Yatra One’,serif;font-size:1.1rem;letter-spacing:1px;border-radius:8px;cursor:pointer;box-shadow:0 4px 20px rgba(232,102,10,0.4);display:flex;align-items:center;justify-content:center;gap:0.5rem;transition:all 0.3s;margin-top:0.5rem;}
+.gen-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(232,102,10,0.55);}
+.gen-btn:focus{outline:2px solid #FFD740;}
+.gen-btn:disabled{opacity:0.7;cursor:not-allowed;}
 
-.sec-light {
-padding: 4.5rem 1.2rem;
-background-color: #F9EDD0;
-}
+/* Empty state */
+.empty-state{text-align:center;padding:2.5rem 1rem;color:rgba(254,246,228,0.5);border:1px dashed rgba(200,148,10,0.3);border-radius:10px;margin-top:1.5rem;}
+.empty-state .es-icon{font-size:2.5rem;margin-bottom:0.8rem;}
+.empty-state p{font-size:0.95rem;font-style:italic;}
 
-.container { max-width: 1000px; margin: 0 auto; }
-
-.sec-hd { text-align: center; margin-bottom: 2.5rem; }
-
-.ornament {
-display: -webkit-flex; display: flex;
--webkit-align-items: center; align-items: center;
--webkit-justify-content: center; justify-content: center;
-gap: 0.8rem; margin-bottom: 0.6rem;
-}
-
-.orn-l { height: 1px; width: 45px; background: linear-gradient(90deg, transparent, #C8940A); }
-.orn-r { height: 1px; width: 45px; background: linear-gradient(90deg, #C8940A, transparent); }
-.orn-star { color: #E8660A; font-size: 0.9rem; }
-.orn-gold .orn-l { background: linear-gradient(90deg, transparent, #FFD740); }
-.orn-gold .orn-r { background: linear-gradient(90deg, #FFD740, transparent); }
-.orn-gold .orn-star { color: #FFD740; }
-
-.sec-title { font-family: ‘Yatra One’, serif; font-size: clamp(1.7rem, 5vw, 2.6rem); color: #2A0505; margin-bottom: 0.35rem; line-height: 1.2; }
-.sec-title-light { font-family: ‘Yatra One’, serif; font-size: clamp(1.7rem, 5vw, 2.6rem); color: #FFD740; margin-bottom: 0.35rem; line-height: 1.2; }
-.sec-sub { font-size: 1rem; color: #6B3A20; font-style: italic; }
-.sec-sub-light { font-size: 1rem; color: rgba(254,246,228,0.55); font-style: italic; }
-
-/* ── KUNDLI ── */
-.kundli-card {
-background-color: #2A0505;
-background-image: linear-gradient(145deg, #1E0303, #3A0808 60%, #2A0808);
-border-radius: 14px;
-padding: 2rem 1.5rem;
-border: 1px solid rgba(200,148,10,0.5);
-box-shadow: 0 20px 60px rgba(30,3,3,0.4);
-max-width: 820px;
-margin: 0 auto;
-}
-
-.kc-title { font-family: ‘Yatra One’, serif; color: #FFD740; font-size: 1.3rem; margin-bottom: 0.2rem; }
-.kc-sub { color: rgba(254,246,228,0.45); font-size: 0.88rem; font-style: italic; margin-bottom: 1.5rem; }
-
-.form-row { display: -webkit-flex; display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
-.fg { display: -webkit-flex; display: flex; flex-direction: column; gap: 0.3rem; flex: 1; min-width: 160px; }
-.fg label { color: #E8B000; font-size: 0.78rem; letter-spacing: 0.8px; text-transform: uppercase; }
-
-.fg input, .fg select {
-background-color: rgba(255,255,255,0.08);
-border: 1px solid rgba(200,148,10,0.35);
-border-radius: 7px;
-padding: 0.65rem 0.85rem;
-color: #FEF6E4;
-font-family: ‘Crimson Pro’, serif;
-font-size: 0.95rem;
-outline: none;
--webkit-appearance: none;
-appearance: none;
-width: 100%;
-}
-
-.fg input:focus, .fg select:focus { border-color: #FFD740; background-color: rgba(255,255,255,0.12); }
-.fg input::placeholder { color: rgba(254,246,228,0.3); }
-.fg select option { background-color: #2A0505; color: #FEF6E4; }
-
-.gen-btn {
-width: 100%;
-background: linear-gradient(135deg, #E8660A, #C8940A);
-color: white; border: none;
-padding: 1rem;
-font-family: ‘Yatra One’, serif; font-size: 1.1rem; letter-spacing: 1px;
-border-radius: 8px; cursor: pointer;
-box-shadow: 0 4px 20px rgba(232,102,10,0.4);
--webkit-appearance: none;
-display: -webkit-flex; display: flex;
--webkit-align-items: center; align-items: center;
--webkit-justify-content: center; justify-content: center;
-gap: 0.5rem;
-}
-
-.kundli-result { margin-top: 2rem; display: none; }
-.kundli-result.show { display: block; -webkit-animation: fadeup 0.5s ease; animation: fadeup 0.5s ease; }
-
-@-webkit-keyframes fadeup { from { opacity:0; -webkit-transform:translateY(20px); } to { opacity:1; -webkit-transform:translateY(0); } }
-@keyframes fadeup { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-
-.result-grid { display: -webkit-flex; display: flex; flex-wrap: wrap; gap: 1.2rem; margin-bottom: 1.2rem; }
-
-.result-box {
-background-color: #FFFDF8;
-border-radius: 10px; padding: 1.2rem;
-border: 1px solid #F0DFB0;
-box-shadow: 0 4px 15px rgba(30,8,8,0.08);
-flex: 1; min-width: 250px;
-}
-
-.result-box h3 { font-family: ‘Yatra One’, serif; color: #4A0C0C; font-size: 1rem; margin-bottom: 0.8rem; padding-bottom: 0.5rem; border-bottom: 1px solid #F0DFB0; }
-.kundli-svg { width: 100%; aspect-ratio: 1 / 1; display: block; }
-.ptable { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
-.ptable th { background-color: #2A0505; color: #E8B000; padding: 0.4rem 0.5rem; text-align: left; font-size: 0.75rem; }
-.ptable td { padding: 0.38rem 0.5rem; border-bottom: 1px solid #F0DFB0; color: #1E0808; }
-.ptable tr:nth-child(even) td { background-color: rgba(240,223,176,0.35); }
-.rbadge { display: inline-block; background: linear-gradient(135deg, #E8660A, #C8940A); color: white; font-size: 0.7rem; padding: 0.12rem 0.45rem; border-radius: 10px; }
-
-.analysis-grid { display: -webkit-flex; display: flex; flex-wrap: wrap; gap: 1rem; }
-.acard { background-color: #FFFDF8; border-radius: 10px; padding: 1.1rem; border-left: 3px solid #E8660A; box-shadow: 0 3px 12px rgba(30,8,8,0.07); flex: 1; min-width: 220px; }
-.acard h4 { font-family: ‘Yatra One’, serif; color: #4A0C0C; font-size: 0.9rem; margin-bottom: 0.4rem; }
-.acard p { font-size: 0.86rem; color: #4A2010; line-height: 1.6; }
+/* Result */
+.kundli-result{margin-top:2rem;display:none;}
+.kundli-result.show{display:block;animation:fadeup 0.5s ease;}
+@keyframes fadeup{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.result-grid{display:flex;flex-wrap:wrap;gap:1.2rem;margin-bottom:1.2rem;}
+.result-box{background-color:#FFFDF8;border-radius:10px;padding:1.2rem;border:1px solid #F0DFB0;box-shadow:0 4px 15px rgba(30,8,8,0.08);flex:1;min-width:min(250px,100%);}
+.result-box h3{font-family:‘Yatra One’,serif;color:#4A0C0C;font-size:1rem;margin-bottom:0.8rem;padding-bottom:0.5rem;border-bottom:1px solid #F0DFB0;}
+.kundli-svg{width:100%;aspect-ratio:1/1;display:block;}
+.ptable{width:100%;border-collapse:collapse;font-size:0.82rem;}
+.ptable th{background-color:#2A0505;color:#E8B000;padding:0.4rem 0.5rem;text-align:left;font-size:0.75rem;}
+.ptable td{padding:0.38rem 0.5rem;border-bottom:1px solid #F0DFB0;color:#1E0808;}
+.ptable tr:nth-child(even) td{background-color:rgba(240,223,176,0.35);}
+.rbadge{display:inline-block;background:linear-gradient(135deg,#E8660A,#C8940A);color:white;font-size:0.7rem;padding:0.12rem 0.45rem;border-radius:10px;}
+.analysis-grid{display:flex;flex-wrap:wrap;gap:1rem;}
+.acard{background-color:#FFFDF8;border-radius:10px;padding:1.1rem;border-left:3px solid #E8660A;box-shadow:0 3px 12px rgba(30,8,8,0.07);flex:1;min-width:min(220px,100%);}
+.acard h4{font-family:‘Yatra One’,serif;color:#4A0C0C;font-size:0.9rem;margin-bottom:0.4rem;}
+.acard p{font-size:0.86rem;color:#4A2010;line-height:1.6;}
 
 /* ── PANCHANG ── */
-.pday-nav { display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; -webkit-justify-content: center; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
-.day-lbl { font-family: ‘Yatra One’, serif; color: #FFD740; font-size: 1.2rem; background-color: rgba(200,148,10,0.1); border: 1px solid rgba(200,148,10,0.35); padding: 0.5rem 1.2rem; border-radius: 7px; min-width: 210px; text-align: center; }
-.dnav { width: 36px; height: 36px; background-color: rgba(200,148,10,0.12); border: 1px solid rgba(200,148,10,0.35); color: #E8B000; border-radius: 50%; cursor: pointer; font-size: 0.95rem; -webkit-appearance: none; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; -webkit-justify-content: center; justify-content: center; }
-
-.p5-grid { display: -webkit-flex; display: flex; flex-wrap: wrap; gap: 0.9rem; margin-bottom: 1.2rem; -webkit-justify-content: center; justify-content: center; }
-.p5-card { background-color: rgba(255,255,255,0.05); border: 1px solid rgba(200,148,10,0.22); border-radius: 12px; padding: 1.2rem 1rem; text-align: center; flex: 1; min-width: 130px; max-width: 180px; }
-.p5-icon { font-size: 1.8rem; display: block; margin-bottom: 0.4rem; }
-.p5-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.5px; color: #FF8C20; margin-bottom: 0.2rem; }
-.p5-value { font-family: ‘Yatra One’, serif; color: #FFD740; font-size: 1rem; margin-bottom: 0.15rem; line-height: 1.3; }
-.p5-time { font-size: 0.75rem; color: rgba(254,246,228,0.4); font-style: italic; }
-
-.pex-grid { display: -webkit-flex; display: flex; flex-wrap: wrap; gap: 0.7rem; margin-bottom: 1rem; }
-.pex-item { background-color: rgba(255,255,255,0.03); border: 1px solid rgba(200,148,10,0.13); border-radius: 8px; padding: 0.8rem 0.9rem; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; gap: 0.7rem; flex: 1; min-width: 140px; }
-.pex-icon { font-size: 1.1rem; }
-.pex-label { font-size: 0.68rem; color: rgba(254,246,228,0.45); text-transform: uppercase; letter-spacing: 0.8px; }
-.pex-val { color: rgba(254,246,228,0.88); font-size: 0.88rem; }
-
-.muhurta-row { background-color: rgba(255,255,255,0.03); border: 1px solid rgba(200,148,10,0.18); border-radius: 9px; padding: 0.9rem 1.1rem; display: -webkit-flex; display: flex; flex-wrap: wrap; gap: 1.2rem; -webkit-align-items: center; align-items: center; }
-.mh-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; margin-right: 5px; }
-.mh-dot.g { background-color: #4CAF50; }
-.mh-dot.b { background-color: #E53935; }
-.mh-dot.n { background-color: #FF9800; }
-.mh-text { font-size: 0.83rem; color: rgba(254,246,228,0.7); }
-.mh-text strong { color: rgba(254,246,228,0.95); }
+.pday-nav{display:flex;align-items:center;justify-content:center;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;}
+.day-lbl{font-family:‘Yatra One’,serif;color:#FFD740;font-size:1.2rem;background-color:rgba(200,148,10,0.1);border:1px solid rgba(200,148,10,0.35);padding:0.5rem 1.2rem;border-radius:7px;min-width:220px;text-align:center;}
+.dnav{width:38px;height:38px;background-color:rgba(200,148,10,0.12);border:1px solid rgba(200,148,10,0.35);color:#E8B000;border-radius:50%;cursor:pointer;font-size:0.95rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.dnav:hover,.dnav:focus{background-color:rgba(200,148,10,0.3);outline:2px solid #C8940A;}
+.p5-grid{display:flex;flex-wrap:wrap;gap:0.9rem;margin-bottom:1.2rem;justify-content:center;}
+.p5-card{background-color:rgba(255,255,255,0.05);border:1px solid rgba(200,148,10,0.22);border-radius:12px;padding:1.2rem 1rem;text-align:center;flex:1;min-width:130px;max-width:185px;transition:all 0.3s;}
+.p5-card:hover{background-color:rgba(200,148,10,0.1);border-color:rgba(200,148,10,0.45);transform:translateY(-3px);}
+.p5-icon{font-size:1.8rem;display:block;margin-bottom:0.4rem;}
+.p5-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:1.5px;color:#FF8C20;margin-bottom:0.2rem;}
+.p5-value{font-family:‘Yatra One’,serif;color:#FFD740;font-size:1rem;margin-bottom:0.15rem;line-height:1.3;}
+.p5-time{font-size:0.75rem;color:rgba(254,246,228,0.4);font-style:italic;}
+.pex-grid{display:flex;flex-wrap:wrap;gap:0.7rem;margin-bottom:1rem;}
+.pex-item{background-color:rgba(255,255,255,0.03);border:1px solid rgba(200,148,10,0.13);border-radius:8px;padding:0.8rem 0.9rem;display:flex;align-items:center;gap:0.7rem;flex:1;min-width:140px;}
+.pex-icon{font-size:1.1rem;}
+.pex-label{font-size:0.68rem;color:rgba(254,246,228,0.45);text-transform:uppercase;letter-spacing:0.8px;}
+.pex-val{color:rgba(254,246,228,0.88);font-size:0.88rem;}
+.muhurta-row{background-color:rgba(255,255,255,0.03);border:1px solid rgba(200,148,10,0.18);border-radius:9px;padding:0.9rem 1.1rem;display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;}
+.mh-dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px;flex-shrink:0;}
+.mh-dot.g{background-color:#4CAF50;}.mh-dot.b{background-color:#E53935;}.mh-dot.n{background-color:#FF9800;}
+.mh-text{font-size:0.83rem;color:rgba(254,246,228,0.7);}
+.mh-text strong{color:rgba(254,246,228,0.95);}
 
 /* ── RASHIFAL ── */
-.rashi-grid { display: -webkit-flex; display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 2rem; -webkit-justify-content: center; justify-content: center; }
-.rcard { background-color: #FFFDF8; border: 1.5px solid #F0DFB0; border-radius: 10px; padding: 1rem 0.65rem; text-align: center; cursor: pointer; flex: 1; min-width: 110px; max-width: 140px; transition: all 0.25s; }
-.rcard.on { border-color: #C8940A; background-color: rgba(232,102,10,0.05); box-shadow: 0 6px 18px rgba(200,148,10,0.22); -webkit-transform: translateY(-3px); transform: translateY(-3px); }
-.rcard-sym { font-size: 1.9rem; display: block; margin-bottom: 0.3rem; }
-.rcard-hi { font-family: ‘Noto Sans Devanagari’, sans-serif; color: #4A0C0C; font-size: 0.9rem; margin-bottom: 0.1rem; }
-.rcard-en { font-size: 0.72rem; color: #6B3A20; font-style: italic; }
-.rcard-dt { font-size: 0.63rem; color: rgba(74,32,16,0.5); margin-top: 0.15rem; }
-
-.reading-panel { background-color: #220505; background-image: linear-gradient(145deg, #1A0303, #2E0808); border-radius: 13px; padding: 1.8rem 1.5rem; border: 1px solid rgba(200,148,10,0.4); display: none; box-shadow: 0 18px 55px rgba(26,3,3,0.35); }
-.reading-panel.show { display: block; -webkit-animation: fadeup 0.5s ease; animation: fadeup 0.5s ease; }
-
-.rp-head { display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; gap: 1.2rem; margin-bottom: 1.3rem; padding-bottom: 1.1rem; border-bottom: 1px solid rgba(200,148,10,0.25); flex-wrap: wrap; }
-.rp-sym { font-size: 3rem; line-height: 1; }
-.rp-name { font-family: ‘Yatra One’, serif; color: #FFD740; font-size: 1.6rem; margin-bottom: 0.2rem; }
-.rp-meta { color: rgba(254,246,228,0.5); font-size: 0.85rem; }
-
-.period-tabs { display: -webkit-flex; display: flex; gap: 0.4rem; margin-bottom: 1.3rem; flex-wrap: wrap; }
-.ptab { background-color: rgba(255,255,255,0.07); border: 1px solid rgba(200,148,10,0.25); color: rgba(254,246,228,0.7); padding: 0.35rem 0.95rem; border-radius: 18px; cursor: pointer; font-family: ‘Crimson Pro’, serif; font-size: 0.88rem; -webkit-appearance: none; }
-.ptab.on { background: linear-gradient(135deg, #E8660A, #C8940A); border-color: transparent; color: white; }
-
-.reading-cats { display: -webkit-flex; display: flex; flex-wrap: wrap; gap: 0.9rem; }
-.rcat { background-color: rgba(255,255,255,0.04); border-radius: 8px; padding: 1rem; border: 1px solid rgba(200,148,10,0.12); flex: 1; min-width: 180px; }
-.rcat-title { color: #E8B000; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 0.35rem; }
-.stars-row { color: #FFD740; font-size: 0.85rem; margin-bottom: 0.35rem; }
-.rcat-text { color: rgba(254,246,228,0.78); font-size: 0.9rem; line-height: 1.65; }
-.lucky-pills { display: -webkit-flex; display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.4rem; }
-.lpill { background-color: rgba(200,148,10,0.18); border: 1px solid rgba(200,148,10,0.3); color: #E8B000; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 10px; }
+.rashi-grid{display:flex;flex-wrap:wrap;gap:0.8rem;margin-bottom:2rem;justify-content:center;}
+.rcard{background-color:#FFFDF8;border:1.5px solid #F0DFB0;border-radius:10px;padding:1rem 0.65rem;text-align:center;cursor:pointer;flex:1;min-width:105px;max-width:138px;transition:all 0.25s;}
+.rcard:hover,.rcard:focus{border-color:#E8660A;background-color:rgba(232,102,10,0.04);transform:translateY(-3px);box-shadow:0 6px 18px rgba(232,102,10,0.14);outline:none;}
+.rcard.on{border-color:#C8940A;background-color:rgba(232,102,10,0.05);box-shadow:0 6px 18px rgba(200,148,10,0.22);transform:translateY(-3px);}
+.rcard-sym{font-size:1.9rem;display:block;margin-bottom:0.3rem;}
+.rcard-hi{font-family:‘Noto Sans Devanagari’,sans-serif;color:#4A0C0C;font-size:0.9rem;margin-bottom:0.1rem;}
+.rcard-en{font-size:0.72rem;color:#6B3A20;font-style:italic;}
+.rcard-dt{font-size:0.63rem;color:rgba(74,32,16,0.5);margin-top:0.15rem;}
+.rashi-hint{text-align:center;color:#6B3A20;font-style:italic;font-size:0.95rem;margin-bottom:1.5rem;padding:0.8rem;background:rgba(200,148,10,0.07);border-radius:8px;border:1px dashed rgba(200,148,10,0.3);}
+.reading-panel{background-color:#220505;background-image:linear-gradient(145deg,#1A0303,#2E0808);border-radius:13px;padding:1.8rem 1.5rem;border:1px solid rgba(200,148,10,0.4);display:none;box-shadow:0 18px 55px rgba(26,3,3,0.35);}
+.reading-panel.show{display:block;animation:fadeup 0.5s ease;}
+.rp-head{display:flex;align-items:center;gap:1.2rem;margin-bottom:1.3rem;padding-bottom:1.1rem;border-bottom:1px solid rgba(200,148,10,0.25);flex-wrap:wrap;}
+.rp-sym{font-size:3rem;line-height:1;}
+.rp-name{font-family:‘Yatra One’,serif;color:#FFD740;font-size:1.6rem;margin-bottom:0.2rem;}
+.rp-meta{color:rgba(254,246,228,0.5);font-size:0.85rem;}
+.period-tabs{display:flex;gap:0.4rem;margin-bottom:1.3rem;flex-wrap:wrap;}
+.ptab{background-color:rgba(255,255,255,0.07);border:1px solid rgba(200,148,10,0.25);color:rgba(254,246,228,0.7);padding:0.35rem 0.95rem;border-radius:18px;cursor:pointer;font-family:‘Crimson Pro’,serif;font-size:0.88rem;transition:all 0.2s;}
+.ptab:focus{outline:2px solid #C8940A;}
+.ptab.on{background:linear-gradient(135deg,#E8660A,#C8940A);border-color:transparent;color:white;}
+.reading-cats{display:flex;flex-wrap:wrap;gap:0.9rem;}
+.rcat{background-color:rgba(255,255,255,0.04);border-radius:8px;padding:1rem;border:1px solid rgba(200,148,10,0.12);flex:1;min-width:min(180px,100%);}
+.rcat-title{color:#E8B000;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:0.35rem;}
+.stars-row{color:#FFD740;font-size:0.85rem;margin-bottom:0.35rem;}
+.rcat-text{color:rgba(254,246,228,0.78);font-size:0.9rem;line-height:1.65;}
+.lucky-pills{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.4rem;}
+.lpill{background-color:rgba(200,148,10,0.18);border:1px solid rgba(200,148,10,0.3);color:#E8B000;font-size:0.75rem;padding:0.15rem 0.5rem;border-radius:10px;}
 
 /* ── FOOTER ── */
-#footer { background-color: #1A0303; border-top: 2px solid #C8940A; padding: 2.5rem 1.5rem 1.5rem; }
-.footer-inner { max-width: 1000px; margin: 0 auto; display: -webkit-flex; display: flex; flex-wrap: wrap; gap: 2rem; }
-.foot-main { flex: 2; min-width: 200px; }
-.foot-col { flex: 1; min-width: 130px; }
-.foot-brand { font-family: ‘Yatra One’, serif; color: #FFD740; font-size: 1.3rem; margin-bottom: 0.4rem; }
-.foot-brand span { color: #FF8C20; }
-.foot-desc { color: rgba(254,246,228,0.48); font-size: 0.83rem; line-height: 1.7; margin-bottom: 0.6rem; }
-.foot-copy { color: rgba(254,246,228,0.25); font-size: 0.75rem; }
-.foot-col h4 { color: #E8B000; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 0.7rem; }
-.foot-col ul { list-style: none; }
-.foot-col li { margin-bottom: 0.38rem; }
-.foot-col a { color: rgba(254,246,228,0.48); text-decoration: none; font-size: 0.83rem; }
+#footer{background-color:#1A0303;border-top:2px solid #C8940A;padding:2.5rem 1.5rem 1.5rem;}
+.footer-inner{max-width:1000px;margin:0 auto;display:flex;flex-wrap:wrap;gap:2rem;}
+.foot-main{flex:2;min-width:200px;}
+.foot-col{flex:1;min-width:130px;}
+.foot-brand{font-family:‘Yatra One’,serif;color:#FFD740;font-size:1.3rem;margin-bottom:0.4rem;}
+.foot-brand span{color:#FF8C20;}
+.foot-desc{color:rgba(254,246,228,0.48);font-size:0.83rem;line-height:1.7;margin-bottom:0.6rem;}
+.foot-copy{color:rgba(254,246,228,0.25);font-size:0.75rem;}
+.foot-col h4{color:#E8B000;font-size:0.78rem;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:0.7rem;}
+.foot-col ul{list-style:none;}
+.foot-col li{margin-bottom:0.38rem;}
+.foot-col a,.foot-col button{color:rgba(254,246,228,0.55);font-size:0.83rem;transition:color 0.2s;background:none;border:none;cursor:pointer;padding:0;font-family:inherit;}
+.foot-col a:hover,.foot-col button:hover,.foot-col a:focus,.foot-col button:focus{color:#E8B000;outline:none;text-decoration:underline;}
 
-/* ── SPINNER ── */
-.spin { width: 17px; height: 17px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; -webkit-animation: sp 0.7s linear infinite; animation: sp 0.7s linear infinite; display: inline-block; }
-@-webkit-keyframes sp { to { -webkit-transform: rotate(360deg); } }
-@keyframes sp { to { transform: rotate(360deg); } }
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:99999;display:none;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.open{display:flex;animation:fadein 0.3s ease;}
+@keyframes fadein{from{opacity:0;}to{opacity:1;}}
+.modal-box{background-color:#1E0303;border:1px solid #C8940A;border-radius:14px;max-width:640px;width:100%;max-height:85vh;overflow-y:auto;padding:2rem;position:relative;box-shadow:0 25px 80px rgba(0,0,0,0.6);}
+.modal-box::-webkit-scrollbar{width:5px;}.modal-box::-webkit-scrollbar-track{background:rgba(255,255,255,0.05);}.modal-box::-webkit-scrollbar-thumb{background:#C8940A;border-radius:3px;}
+.modal-close{position:absolute;top:1rem;right:1rem;background:rgba(200,148,10,0.2);border:1px solid rgba(200,148,10,0.4);color:#FFD740;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.modal-close:hover{background:rgba(200,148,10,0.4);}
+.modal-title{font-family:‘Yatra One’,serif;color:#FFD740;font-size:1.5rem;margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid rgba(200,148,10,0.3);}
+.modal-body{color:rgba(254,246,228,0.78);font-size:0.92rem;line-height:1.75;}
+.modal-body h3{color:#E8B000;font-family:‘Yatra One’,serif;margin:1.2rem 0 0.4rem;font-size:1.1rem;}
+.modal-body p{margin-bottom:0.8rem;}
+.modal-body a{color:#FF8C20;text-decoration:underline;}
 
-/* ── TOAST ── */
-#toast { position: fixed; bottom: 1.5rem; right: 1.2rem; z-index: 9999; background-color: #2A0505; border: 1px solid #C8940A; border-radius: 10px; padding: 0.85rem 1.2rem; color: #FEF6E4; font-size: 0.88rem; max-width: 270px; box-shadow: 0 8px 28px rgba(0,0,0,0.45); display: none; }
-#toast.show { display: block; }
+/* ── SPINNER & TOAST ── */
+.spin{width:17px;height:17px;border:2px solid rgba(255,255,255,0.3);border-top-color:white;border-radius:50%;animation:sp 0.7s linear infinite;display:inline-block;vertical-align:middle;}
+@keyframes sp{to{transform:rotate(360deg);}}
+#toast{position:fixed;bottom:1.5rem;right:1.2rem;z-index:99999;background-color:#2A0505;border:1px solid #C8940A;border-radius:10px;padding:0.85rem 1.2rem;color:#FEF6E4;font-size:0.88rem;max-width:280px;box-shadow:0 8px 28px rgba(0,0,0,0.45);display:none;animation:fadeup 0.4s ease;}
+#toast.show{display:block;}
 
-/* ── MOBILE ── */
-.hmenu { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
-.hmenu span { width: 22px; height: 2px; background-color: #FFD740; display: block; border-radius: 2px; }
-
-@media (max-width: 640px) {
-.nav-menu { display: none; }
-.hmenu { display: -webkit-flex; display: flex; }
-.kundli-card { padding: 1.3rem 1rem; }
-.reading-panel { padding: 1.3rem 1rem; }
+@media(max-width:640px){
+.kundli-card,.reading-panel{padding:1.3rem 1rem;}
+.modal-box{padding:1.5rem 1.2rem;}
+.hero-stats{gap:1.2rem;}
 }
 </style>
 
 </head>
 <body>
 
-<nav id="navbar">
-  <a href="#" class="nav-logo">🔮 Kundli<span>Checking</span>.com</a>
-  <ul class="nav-menu">
+<!-- Accessibility skip link -->
+
+<a href="#kundli" class="skip-link">Skip to main content</a>
+
+<!-- ═══ MODALS ═══ -->
+
+<!-- About Us -->
+
+<div class="modal-overlay" id="modalAbout" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalAbout')" aria-label="Close">✕</button>
+    <div class="modal-title" id="aboutTitle">About KundliChecking.com</div>
+    <div class="modal-body">
+      <p>KundliChecking.com is India's free, trusted Vedic astrology platform — built to bring the ancient wisdom of Jyotish to every Indian, in their own language.</p>
+      <h3>Our Mission</h3>
+      <p>We believe every person deserves access to authentic Vedic astrology — not behind paywalls, not in only one language. Our platform provides free Kundli generation, daily Panchang and Rashifal in 8 Indian languages.</p>
+      <h3>What We Offer</h3>
+      <p>✦ Free Janam Kundli (North Indian birth chart) with planetary positions and analysis<br>✦ Daily Panchang with Tithi, Nakshatra, Yoga, Karana and Vara<br>✦ Daily, Weekly and Monthly Rashifal for all 12 rashis<br>✦ Available in English, Hindi, Tamil, Telugu, Marathi, Gujarati, Bengali and Kannada</p>
+      <h3>Contact Us</h3>
+      <p>For queries, partnerships or astrologer onboarding: <a href="mailto:hello@kundlichecking.com">hello@kundlichecking.com</a></p>
+      <p style="margin-top:1rem;font-size:0.82rem;color:rgba(254,246,228,0.4);">© <span class="current-year"></span> KundliChecking.com · Made with ❤️ in India 🇮🇳</p>
+    </div>
+  </div>
+</div>
+
+<!-- Privacy Policy -->
+
+<div class="modal-overlay" id="modalPrivacy" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalPrivacy')" aria-label="Close">✕</button>
+    <div class="modal-title" id="privacyTitle">Privacy Policy</div>
+    <div class="modal-body">
+      <p><strong>Last updated:</strong> <span class="current-year"></span></p>
+      <h3>1. Data We Collect</h3>
+      <p>KundliChecking.com does <strong>not</strong> store, sell or share any personal data you enter. Birth details (name, date, time, place) are processed entirely in your browser and are never transmitted to our servers.</p>
+      <h3>2. Cookies</h3>
+      <p>We use no tracking cookies. We may use anonymous analytics (e.g. page view counts) that do not identify individual users.</p>
+      <h3>3. Third-Party Services</h3>
+      <p>We use Google Fonts to load typefaces. Google's privacy policy applies to that service. We do not use any advertising networks that track individual users across sites.</p>
+      <h3>4. Children's Privacy</h3>
+      <p>Our service is not directed at children under 13. We do not knowingly collect data from minors.</p>
+      <h3>5. Changes to This Policy</h3>
+      <p>We may update this policy periodically. Continued use of the site constitutes acceptance of any changes.</p>
+      <h3>6. Contact</h3>
+      <p>Privacy questions: <a href="mailto:privacy@kundlichecking.com">privacy@kundlichecking.com</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- Terms of Use -->
+
+<div class="modal-overlay" id="modalTerms" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalTerms')" aria-label="Close">✕</button>
+    <div class="modal-title" id="termsTitle">Terms of Use</div>
+    <div class="modal-body">
+      <h3>1. Acceptance</h3>
+      <p>By using KundliChecking.com you agree to these terms. If you do not agree, please do not use this site.</p>
+      <h3>2. Nature of Content</h3>
+      <p>All astrology content on this platform is provided for <strong>entertainment and informational purposes only</strong>. It does not constitute medical, legal, financial or professional advice. Do not make major life decisions solely based on astrological readings.</p>
+      <h3>3. Accuracy</h3>
+      <p>While we strive for accuracy in Vedic calculations, we make no warranties about the completeness or accuracy of astrological interpretations. Planetary positions are calculated algorithmically and may differ from manual calculations.</p>
+      <h3>4. Intellectual Property</h3>
+      <p>All content, design and code on this site is the property of KundliChecking.com. You may not reproduce or redistribute it without written permission.</p>
+      <h3>5. Limitation of Liability</h3>
+      <p>KundliChecking.com shall not be liable for any direct or indirect damages arising from use of this service.</p>
+      <h3>6. Governing Law</h3>
+      <p>These terms are governed by the laws of India. Any disputes shall be subject to the jurisdiction of Indian courts.</p>
+      <h3>7. Contact</h3>
+      <p><a href="mailto:legal@kundlichecking.com">legal@kundlichecking.com</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- Contact Us -->
+
+<div class="modal-overlay" id="modalContact" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modalContact')" aria-label="Close">✕</button>
+    <div class="modal-title" id="contactTitle">Contact Us</div>
+    <div class="modal-body">
+      <p>We'd love to hear from you! Reach us through any of the channels below.</p>
+      <h3>General Enquiries</h3>
+      <p>📧 <a href="mailto:hello@kundlichecking.com">hello@kundlichecking.com</a></p>
+      <h3>Astrologer Partnerships</h3>
+      <p>Want to list your services on KundliChecking.com? We're onboarding verified astrologers.<br>📧 <a href="mailto:astrologers@kundlichecking.com">astrologers@kundlichecking.com</a></p>
+      <h3>Technical Support</h3>
+      <p>📧 <a href="mailto:support@kundlichecking.com">support@kundlichecking.com</a></p>
+      <h3>Social Media</h3>
+      <p>Follow us for daily horoscopes and astrology tips.<br>🌐 Coming soon on Instagram, YouTube and WhatsApp.</p>
+      <p style="margin-top:1.5rem;font-size:0.82rem;color:rgba(254,246,228,0.4);">We typically respond within 24–48 hours.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ NAVBAR ═══ -->
+
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <a href="#home" class="nav-logo" aria-label="KundliChecking.com Home">🔮 Kundli<span>Checking</span>.com</a>
+  <ul class="nav-links" role="list">
     <li><a href="#kundli">Kundli</a></li>
     <li><a href="#panchang">Panchang</a></li>
     <li><a href="#horoscope">Rashifal</a></li>
-    <li><a href="#kundli" class="nav-cta-btn" style="padding:0.32rem 0.9rem;border-radius:15px;font-size:0.82rem;">Check Free ✦</a></li>
+    <li>
+      <label for="langSelectDesktop" class="skip-link" style="position:absolute;">Select Language</label>
+      <select id="langSelectDesktop" class="lang-select" onchange="changeLang(this.value)" aria-label="Select language">
+        <option value="en">🇬🇧 EN</option>
+        <option value="hi">🇮🇳 हिंदी</option>
+        <option value="ta">தமிழ்</option>
+        <option value="te">తెలుగు</option>
+        <option value="mr">मराठी</option>
+        <option value="gu">ગુજ</option>
+        <option value="bn">বাংলা</option>
+        <option value="kn">ಕನ್ನಡ</option>
+      </select>
+    </li>
+    <li><a href="#kundli" class="nav-cta">Check Free ✦</a></li>
   </ul>
-  <button class="hmenu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <button class="hmenu" id="hamburger" onclick="toggleMenu()" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileMenu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<section id="hero">
-  <canvas id="starCanvas"></canvas>
-  <div class="dring"></div><div class="dring"></div><div class="dring"></div>
+<!-- Mobile Menu -->
+
+<div id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+  <a href="#kundli" onclick="closeMenu()">🔮 Free Kundli</a>
+  <a href="#panchang" onclick="closeMenu()">📅 Daily Panchang</a>
+  <a href="#horoscope" onclick="closeMenu()">♈ Rashifal</a>
+  <button onclick="openModal('modalAbout');closeMenu();">ℹ️ About Us</button>
+  <button onclick="openModal('modalContact');closeMenu();">📩 Contact Us</button>
+  <label for="langSelectMobile" style="color:rgba(254,246,228,0.5);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.8px;padding:0.3rem 0.8rem 0;">Language</label>
+  <select id="langSelectMobile" class="lang-select" style="margin:0 0.8rem 0.5rem;width:calc(100% - 1.6rem);" onchange="changeLang(this.value)" aria-label="Select language">
+    <option value="en">🇬🇧 English</option>
+    <option value="hi">🇮🇳 हिन्दी</option>
+    <option value="ta">தமிழ்</option>
+    <option value="te">తెలుగు</option>
+    <option value="mr">मराठी</option>
+    <option value="gu">ગુજરાતી</option>
+    <option value="bn">বাংলা</option>
+    <option value="kn">ಕನ್ನಡ</option>
+  </select>
+</div>
+
+<!-- ═══ HERO ═══ -->
+
+<section id="home" aria-label="Hero">
+  <canvas id="starCanvas" aria-hidden="true"></canvas>
+  <div class="dring" aria-hidden="true"></div>
+  <div class="dring" aria-hidden="true"></div>
+  <div class="dring" aria-hidden="true"></div>
   <div class="hero-content">
-    <div class="hero-badge">✦ &nbsp; India's Free Vedic Astrology Platform &nbsp; ✦</div>
-    <span class="hero-om">ॐ</span>
+    <div class="hero-badge" data-t="badge">✦ &nbsp; India's Free Vedic Astrology Platform &nbsp; ✦</div>
+    <span class="hero-om" aria-hidden="true">ॐ</span>
     <h1 class="hero-title">Kundli<span class="hl2">Checking</span><span class="hl3">.</span><span class="hl4">com</span></h1>
-    <p class="hero-hindi">मुफ्त कुंडली • दैनिक पंचांग • राशिफल</p>
-    <p class="hero-tagline">Check your free Janam Kundli, read today's Panchang &<br>get your daily Rashifal — powered by authentic Vedic wisdom.</p>
-    <div class="hero-stats">
-      <div><span class="stat-num">10L+</span><span class="stat-lbl">Kundlis Generated</span></div>
-      <div><span class="stat-num">12</span><span class="stat-lbl">Rashis Covered</span></div>
-      <div><span class="stat-num">100%</span><span class="stat-lbl">Free Forever</span></div>
-      <div><span class="stat-num">9</span><span class="stat-lbl">Grahas Calculated</span></div>
+    <p class="hero-hindi" data-t="heroHindi">मुफ्त कुंडली • दैनिक पंचांग • राशिफल</p>
+    <p class="hero-tagline" data-t="heroTag">Check your free Janam Kundli, read today's Panchang &amp; get your daily Rashifal — powered by authentic Vedic wisdom.</p>
+    <div class="hero-stats" aria-label="Platform statistics">
+      <div><span class="stat-num">10L+</span><span class="stat-lbl" data-t="stat1">Kundlis Generated</span></div>
+      <div><span class="stat-num">12</span><span class="stat-lbl" data-t="stat2">Rashis Covered</span></div>
+      <div><span class="stat-num">100%</span><span class="stat-lbl" data-t="stat3">Free Forever</span></div>
+      <div><span class="stat-num">8</span><span class="stat-lbl" data-t="stat4">Indian Languages</span></div>
     </div>
     <div>
-      <a href="#kundli" class="btn-primary">🔮 Check My Kundli Free</a>
-      <a href="#panchang" class="btn-outline">📅 Today's Panchang</a>
+      <a href="#kundli" class="btn-primary" data-t="heroCta1">🔮 Check My Kundli Free</a>
+      <a href="#panchang" class="btn-outline" data-t="heroCta2">📅 Today's Panchang</a>
     </div>
   </div>
 </section>
 
-<div id="trustbar">
+<!-- ═══ TRUST BAR ═══ -->
+
+<div id="trustbar" aria-hidden="true">
   <div class="marquee-track">
     <span class="mq-item">✦ <strong>Free Janam Kundli</strong> in seconds</span>
     <span class="mq-item">✦ <strong>North Indian Chart</strong> with all 9 Grahas</span>
-    <span class="mq-item">✦ <strong>Daily Panchang</strong> — Tithi, Nakshatra & Yoga</span>
+    <span class="mq-item">✦ <strong>Daily Panchang</strong> — Tithi, Nakshatra &amp; Yoga</span>
     <span class="mq-item">✦ <strong>Rashifal</strong> for all 12 Rashis</span>
+    <span class="mq-item">✦ <strong>8 Indian Languages</strong> supported</span>
     <span class="mq-item">✦ <strong>100% Private</strong> — no data stored</span>
     <span class="mq-item">✦ <strong>Made in India</strong> 🇮🇳</span>
     <span class="mq-item">✦ <strong>Free Janam Kundli</strong> in seconds</span>
     <span class="mq-item">✦ <strong>North Indian Chart</strong> with all 9 Grahas</span>
-    <span class="mq-item">✦ <strong>Daily Panchang</strong> — Tithi, Nakshatra & Yoga</span>
+    <span class="mq-item">✦ <strong>Daily Panchang</strong> — Tithi, Nakshatra &amp; Yoga</span>
     <span class="mq-item">✦ <strong>Rashifal</strong> for all 12 Rashis</span>
+    <span class="mq-item">✦ <strong>8 Indian Languages</strong> supported</span>
     <span class="mq-item">✦ <strong>100% Private</strong> — no data stored</span>
     <span class="mq-item">✦ <strong>Made in India</strong> 🇮🇳</span>
   </div>
 </div>
 
-<section class="sec-dark" id="kundli">
+<!-- ═══ KUNDLI ═══ -->
+
+<section class="sec-dark" id="kundli" aria-labelledby="kundliHeading">
   <div class="container">
     <div class="sec-hd">
-      <div class="ornament orn-gold"><div class="orn-l"></div><span class="orn-star">✦</span><div class="orn-r"></div></div>
-      <h2 class="sec-title-light">जन्म कुंडली — Janam Kundli</h2>
-      <p class="sec-sub-light">Enter your birth details to generate your complete Vedic birth chart</p>
+      <div class="ornament orn-gold" aria-hidden="true"><div class="orn-l"></div><span class="orn-star">✦</span><div class="orn-r"></div></div>
+      <h2 class="sec-title-light" id="kundliHeading" data-t="kundliTitle">जन्म कुंडली — Janam Kundli</h2>
+      <p class="sec-sub-light" data-t="kundliSub">Enter your birth details to generate your complete Vedic birth chart</p>
     </div>
     <div class="kundli-card">
-      <div class="kc-title">अपनी कुंडली चेक करें</div>
-      <div class="kc-sub">Fill in your details — results in seconds</div>
-      <div class="form-row">
-        <div class="fg"><label>Full Name</label><input type="text" id="kName" placeholder="e.g. Rahul Sharma"></div>
-        <div class="fg"><label>Date of Birth</label><input type="date" id="kDob"></div>
-        <div class="fg"><label>Time of Birth</label><input type="time" id="kTob"></div>
+      <div class="kc-title" data-t="formTitle">अपनी कुंडली चेक करें</div>
+      <div class="kc-sub" data-t="formSub">Fields marked <span style="color:#FF8888">*</span> are required</div>
+
+```
+  <div class="form-row">
+    <div class="fg" id="fg-name">
+      <label for="kName" data-t="labelName">Full Name</label>
+      <input type="text" id="kName" name="fullName" autocomplete="name" placeholder="Enter your full name" aria-describedby="nameHint">
+      <span class="hint" id="nameHint">As per your birth records (optional)</span>
+    </div>
+    <div class="fg" id="fg-dob">
+      <label for="kDob" data-t="labelDob">Date of Birth <span class="required-star" aria-label="required">*</span></label>
+      <input type="date" id="kDob" name="dob" required autocomplete="bday" aria-required="true" aria-describedby="dobHint">
+      <span class="hint" id="dobHint">DD / MM / YYYY</span>
+      <span class="field-error" id="dobError">Please enter your date of birth</span>
+    </div>
+    <div class="fg" id="fg-tob">
+      <label for="kTob" data-t="labelTob">Time of Birth</label>
+      <input type="time" id="kTob" name="tob" autocomplete="off" aria-describedby="tobHint">
+      <span class="hint" id="tobHint">HH:MM (24-hr format) — leave blank if unknown</span>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="fg" id="fg-pob">
+      <label for="kPob" data-t="labelPob">Place of Birth <span class="required-star" aria-label="required">*</span></label>
+      <input type="text" id="kPob" name="pob" required autocomplete="off" placeholder="e.g. Mumbai, Maharashtra" aria-required="true" aria-describedby="pobHint pobError">
+      <span class="hint" id="pobHint">City and State for accurate results</span>
+      <span class="field-error" id="pobError">Please enter your place of birth</span>
+    </div>
+    <div class="fg" id="fg-gender">
+      <label for="kGender" data-t="labelGender">Gender</label>
+      <select id="kGender" name="gender" aria-label="Select gender">
+        <option value="" data-t="genderSelect">— Select Gender —</option>
+        <option value="male" data-t="genderMale">Male</option>
+        <option value="female" data-t="genderFemale">Female</option>
+        <option value="other" data-t="genderOther">Other / Prefer not to say</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label for="kLangChart" data-t="labelLang">Chart Language</label>
+      <select id="kLangChart" name="chartLang" aria-label="Select chart language">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="ta">தமிழ்</option>
+        <option value="te">తెలుగు</option>
+        <option value="mr">मराठी</option>
+        <option value="gu">ગુજરાતી</option>
+        <option value="bn">বাংলা</option>
+        <option value="kn">ಕನ್ನಡ</option>
+      </select>
+    </div>
+  </div>
+
+  <button class="gen-btn" id="genBtn" onclick="generateKundli()" aria-live="polite">
+    <span id="genBtnTxt" data-t="genBtn">✦ &nbsp; Generate My Free Kundli &nbsp; ✦</span>
+  </button>
+
+  <!-- Empty state (shown before generation) -->
+  <div class="empty-state" id="kundliEmpty">
+    <div class="es-icon">🔮</div>
+    <p>Fill in your birth details above and tap <strong>Generate</strong> to see your personalised Vedic birth chart, planetary positions and full analysis.</p>
+  </div>
+
+  <!-- Result (hidden until generated) -->
+  <div class="kundli-result" id="kResult">
+    <div class="result-grid">
+      <div class="result-box">
+        <h3>🗺️ <span data-t="chartTitle">North Indian Birth Chart</span></h3>
+        <svg class="kundli-svg" id="kSvg" viewBox="0 0 300 300" role="img" aria-label="North Indian birth chart"></svg>
       </div>
-      <div class="form-row">
-        <div class="fg"><label>Place of Birth</label><input type="text" id="kPob" placeholder="e.g. Mumbai, India"></div>
-        <div class="fg"><label>Gender</label>
-          <select id="kGender"><option value="male">Male</option><option value="female">Female</option><option value="other">Other</option></select>
-        </div>
-        <div class="fg"><label>Language</label>
-          <select id="kLang"><option value="en">English</option><option value="hi">हिन्दी</option></select>
-        </div>
-      </div>
-      <button class="gen-btn" id="genBtn" onclick="generateKundli()">
-        <span id="genBtnTxt">✦ &nbsp; Generate My Free Kundli &nbsp; ✦</span>
-      </button>
-      <div class="kundli-result" id="kResult">
-        <div class="result-grid">
-          <div class="result-box"><h3>🗺️ North Indian Birth Chart</h3><svg class="kundli-svg" id="kSvg" viewBox="0 0 300 300"></svg></div>
-          <div class="result-box"><h3>🪐 Planetary Positions</h3>
-            <table class="ptable"><thead><tr><th>Graha</th><th>Rashi</th><th>House</th><th>Deg</th></tr></thead><tbody id="kPbody"></tbody></table>
-          </div>
-        </div>
-        <div class="analysis-grid" id="kAnalysis"></div>
+      <div class="result-box">
+        <h3>🪐 <span data-t="planetTitle">Planetary Positions</span></h3>
+        <table class="ptable" aria-label="Planetary positions table">
+          <thead><tr><th scope="col" data-t="colGraha">Graha</th><th scope="col" data-t="colRashi">Rashi</th><th scope="col" data-t="colHouse">House</th><th scope="col">Deg°</th></tr></thead>
+          <tbody id="kPbody"></tbody>
+        </table>
       </div>
     </div>
+    <div class="analysis-grid" id="kAnalysis"></div>
+  </div>
+</div>
+```
+
   </div>
 </section>
 
-<section class="sec-panchang" id="panchang">
+<!-- ═══ PANCHANG ═══ -->
+
+<section class="sec-panchang" id="panchang" aria-labelledby="panchangHeading">
   <div class="container">
     <div class="sec-hd">
-      <div class="ornament orn-gold"><div class="orn-l"></div><span class="orn-star">✦</span><div class="orn-r"></div></div>
-      <h2 class="sec-title-light">आज का पंचांग — Daily Panchang</h2>
-      <p class="sec-sub-light">The five sacred elements of the Vedic calendar</p>
+      <div class="ornament orn-gold" aria-hidden="true"><div class="orn-l"></div><span class="orn-star">✦</span><div class="orn-r"></div></div>
+      <h2 class="sec-title-light" id="panchangHeading" data-t="panchangTitle">आज का पंचांग — Daily Panchang</h2>
+      <p class="sec-sub-light" data-t="panchangSub">The five sacred elements of the Vedic calendar</p>
     </div>
-    <div class="pday-nav">
-      <button class="dnav" onclick="shiftDay(-1)">◀</button>
-      <div class="day-lbl" id="pdayLbl"></div>
-      <button class="dnav" onclick="shiftDay(1)">▶</button>
+    <div class="pday-nav" aria-label="Date navigation">
+      <button class="dnav" onclick="shiftDay(-1)" aria-label="Previous day">◀</button>
+      <div class="day-lbl" id="pdayLbl" aria-live="polite"></div>
+      <button class="dnav" onclick="shiftDay(1)" aria-label="Next day">▶</button>
     </div>
-    <div class="p5-grid" id="p5Grid"></div>
+    <div class="p5-grid" id="p5Grid" aria-label="Panchang elements"></div>
     <div class="pex-grid" id="pexGrid"></div>
     <div class="muhurta-row" id="muhurtaRow"></div>
   </div>
 </section>
 
-<section class="sec-light" id="horoscope">
+<!-- ═══ RASHIFAL ═══ -->
+
+<section class="sec-light" id="horoscope" aria-labelledby="rashifalHeading">
   <div class="container">
     <div class="sec-hd">
-      <div class="ornament"><div class="orn-l"></div><span class="orn-star">✦</span><div class="orn-r"></div></div>
-      <h2 class="sec-title">राशिफल — Daily Rashifal</h2>
-      <p class="sec-sub">Select your Rashi for your daily, weekly or monthly horoscope</p>
+      <div class="ornament" aria-hidden="true"><div class="orn-l"></div><span class="orn-star">✦</span><div class="orn-r"></div></div>
+      <h2 class="sec-title" id="rashifalHeading" data-t="rashifalTitle">राशिफल — Daily Rashifal</h2>
+      <p class="sec-sub" data-t="rashifalSub">Select your Rashi for your daily, weekly or monthly horoscope</p>
     </div>
-    <div class="rashi-grid" id="rashiGrid"></div>
-    <div class="reading-panel" id="readingPanel"></div>
+    <p class="rashi-hint" id="rashiHint" data-t="rashiHint">👇 Tap your Rashi below to read your personalised horoscope</p>
+    <div class="rashi-grid" id="rashiGrid" role="list" aria-label="Select your Rashi"></div>
+    <div class="reading-panel" id="readingPanel" aria-live="polite"></div>
   </div>
 </section>
 
-<footer id="footer">
+<!-- ═══ FOOTER ═══ -->
+
+<footer id="footer" role="contentinfo">
   <div class="footer-inner">
     <div class="foot-main">
       <div class="foot-brand">Kundli<span>Checking</span>.com</div>
-      <p class="foot-desc">India's trusted free Vedic astrology platform. Get your Janam Kundli, Daily Panchang and Rashifal — completely free, always.</p>
-      <p class="foot-copy">© 2025 KundliChecking.com · Made with ❤️ in India 🇮🇳</p>
+      <p class="foot-desc">India's trusted free Vedic astrology platform. Get your Janam Kundli, Daily Panchang and Rashifal in 8 Indian languages — completely free, always.</p>
+      <p class="foot-copy">© <span class="current-year"></span> KundliChecking.com · Made with ❤️ in India 🇮🇳</p>
     </div>
     <div class="foot-col">
       <h4>Tools</h4>
-      <ul><li><a href="#kundli">Free Kundli</a></li><li><a href="#panchang">Daily Panchang</a></li><li><a href="#horoscope">Rashifal</a></li><li><a href="#">Kundli Milan</a></li></ul>
+      <ul>
+        <li><a href="#kundli">Free Kundli</a></li>
+        <li><a href="#panchang">Daily Panchang</a></li>
+        <li><a href="#horoscope">Rashifal</a></li>
+      </ul>
     </div>
     <div class="foot-col">
       <h4>Company</h4>
-      <ul><li><a href="#">About Us</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Use</a></li><li><a href="#">Contact Us</a></li></ul>
+      <ul>
+        <li><button onclick="openModal('modalAbout')">About Us</button></li>
+        <li><button onclick="openModal('modalPrivacy')">Privacy Policy</button></li>
+        <li><button onclick="openModal('modalTerms')">Terms of Use</button></li>
+        <li><button onclick="openModal('modalContact')">Contact Us</button></li>
+      </ul>
     </div>
   </div>
 </footer>
 
-<div id="toast"></div>
+<div id="toast" role="status" aria-live="polite"></div>
 
 <script>
-var cvs=document.getElementById('starCanvas'),ctx=cvs.getContext('2d'),stars=[];
-function initStars(){cvs.width=window.innerWidth;cvs.height=window.innerHeight;stars=[];for(var i=0;i<180;i++)stars.push({x:Math.random()*cvs.width,y:Math.random()*cvs.height,r:Math.random()*1.3+0.2,phase:Math.random()*Math.PI*2,sp:Math.random()*0.012+0.004});}
-function drawStars(){ctx.clearRect(0,0,cvs.width,cvs.height);var t=Date.now()*0.001;for(var i=0;i<stars.length;i++){var s=stars[i],a=0.2+0.65*Math.abs(Math.sin(t*s.sp*8+s.phase));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle='rgba(255,220,100,'+a+')';ctx.fill();}requestAnimationFrame(drawStars);}
+/* ═══ DYNAMIC YEAR ═══ */
+document.querySelectorAll('.current-year').forEach(function(el){el.textContent=new Date().getFullYear();});
+
+/* ═══ HASH ROUTING ═══ */
+function scrollToHash(hash){
+  var el=document.querySelector(hash);
+  if(!el)return;
+  var top=el.getBoundingClientRect().top+window.pageYOffset-60;
+  window.scrollTo({top:top,behavior:'smooth'});
+  history.pushState(null,null,hash);
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var h=this.getAttribute('href');
+    if(h&&h.length>1){e.preventDefault();scrollToHash(h);closeMenu();}
+  });
+});
+
+window.addEventListener('hashchange',function(){
+  if(location.hash)scrollToHash(location.hash);
+});
+
+if(location.hash){setTimeout(function(){scrollToHash(location.hash);},300);}
+
+/* ═══ MOBILE MENU ═══ */
+function toggleMenu(){
+  var m=document.getElementById('mobileMenu');
+  var btn=document.getElementById('hamburger');
+  var open=m.classList.toggle('open');
+  btn.setAttribute('aria-expanded',open?'true':'false');
+}
+function closeMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').setAttribute('aria-expanded','false');
+}
+document.addEventListener('click',function(e){
+  var m=document.getElementById('mobileMenu'),b=document.getElementById('hamburger');
+  if(m.classList.contains('open')&&!m.contains(e.target)&&!b.contains(e.target))closeMenu();
+});
+
+/* ═══ MODALS ═══ */
+function openModal(id){
+  var m=document.getElementById(id);
+  m.classList.add('open');
+  m.querySelector('.modal-box').focus();
+  document.body.style.overflow='hidden';
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow='';
+}
+document.querySelectorAll('.modal-overlay').forEach(function(ov){
+  ov.addEventListener('click',function(e){if(e.target===ov)closeModal(ov.id);});
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.open').forEach(function(m){closeModal(m.id);});}
+});
+
+/* ═══ STARS ═══ */
+var cvs=document.getElementById('starCanvas'),ctx=cvs.getContext('2d'),starsArr=[];
+function initStars(){cvs.width=window.innerWidth;cvs.height=window.innerHeight;starsArr=[];for(var i=0;i<160;i++)starsArr.push({x:Math.random()*cvs.width,y:Math.random()*cvs.height,r:Math.random()*1.3+0.2,phase:Math.random()*Math.PI*2,sp:Math.random()*0.012+0.004});}
+function drawStars(){ctx.clearRect(0,0,cvs.width,cvs.height);var t=Date.now()*0.001;for(var i=0;i<starsArr.length;i++){var s=starsArr[i],a=0.2+0.65*Math.abs(Math.sin(t*s.sp*8+s.phase));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle='rgba(255,220,100,'+a+')';ctx.fill();}requestAnimationFrame(drawStars);}
 window.addEventListener('resize',initStars);initStars();drawStars();
 
+/* ═══ MULTILANGUAGE ═══ */
+var LANGS={
+  en:{badge:"India's Free Vedic Astrology Platform",heroHindi:"Free Kundli • Daily Panchang • Rashifal",heroTag:"Check your free Janam Kundli, read today's Panchang & get your daily Rashifal — powered by authentic Vedic wisdom.",stat1:"Kundlis Generated",stat2:"Rashis Covered",stat3:"Free Forever",stat4:"Indian Languages",heroCta1:"🔮 Check My Kundli Free",heroCta2:"📅 Today's Panchang",kundliTitle:"Janam Kundli — Birth Chart",kundliSub:"Enter your birth details to generate your complete Vedic birth chart",formTitle:"Check Your Kundli",formSub:'Fields marked <span style="color:#FF8888">*</span> are required',labelName:"Full Name",labelDob:"Date of Birth",labelTob:"Time of Birth",labelPob:"Place of Birth",labelGender:"Gender",genderSelect:"— Select Gender —",genderMale:"Male",genderFemale:"Female",genderOther:"Other / Prefer not to say",labelLang:"Chart Language",genBtn:"✦  Generate My Free Kundli  ✦",chartTitle:"North Indian Birth Chart",planetTitle:"Planetary Positions",colGraha:"Graha",colRashi:"Rashi",colHouse:"House",panchangTitle:"Daily Panchang",panchangSub:"The five sacred elements of the Vedic calendar",rashifalTitle:"Daily Rashifal",rashifalSub:"Select your Rashi for your daily, weekly or monthly horoscope",rashiHint:"👇 Tap your Rashi below to read your personalised horoscope"},
+  hi:{badge:"भारत का निःशुल्क वैदिक ज्योतिष मंच",heroHindi:"मुफ्त कुंडली • दैनिक पंचांग • राशिफल",heroTag:"अपनी मुफ्त जन्म कुंडली जांचें, आज का पंचांग पढ़ें और दैनिक राशिफल पाएं।",stat1:"कुंडलियां बनाई",stat2:"राशियां",stat3:"सदा मुफ्त",stat4:"भारतीय भाषाएं",heroCta1:"🔮 मेरी कुंडली देखें",heroCta2:"📅 आज का पंचांग",kundliTitle:"जन्म कुंडली",kundliSub:"अपना विवरण दर्ज करें और तुरंत कुंडली पाएं",formTitle:"अपनी कुंडली चेक करें",formSub:'<span style="color:#FF8888">*</span> से चिह्नित फ़ील्ड अनिवार्य हैं',labelName:"पूरा नाम",labelDob:"जन्म तिथि",labelTob:"जन्म समय",labelPob:"जन्म स्थान",labelGender:"लिंग",genderSelect:"— लिंग चुनें —",genderMale:"पुरुष",genderFemale:"महिला",genderOther:"अन्य",labelLang:"भाषा",genBtn:"✦  मेरी कुंडली बनाएं  ✦",chartTitle:"उत्तर भारतीय कुंडली",planetTitle:"ग्रह स्थिति",colGraha:"ग्रह",colRashi:"राशि",colHouse:"भाव",panchangTitle:"आज का पंचांग",panchangSub:"हिन्दू पंचांग के पाँच पवित्र तत्व",rashifalTitle:"दैनिक राशिफल",rashifalSub:"अपनी राशि चुनें",rashiHint:"👇 अपनी राशि पर क्लिक करें"},
+  ta:{badge:"இந்தியாவின் இலவச வேத ஜோதிட தளம்",heroHindi:"இலவச குண்டலி • தினசரி பஞ்சாங்கம் • ராசிபலன்",heroTag:"உங்கள் இலவச ஜனன குண்டலியை சரிபார்க்கவும்.",stat1:"குண்டலிகள்",stat2:"ராசிகள்",stat3:"என்றும் இலவசம்",stat4:"இந்திய மொழிகள்",heroCta1:"🔮 குண்டலி சரிபார்",heroCta2:"📅 இன்றைய பஞ்சாங்கம்",kundliTitle:"ஜனன குண்டலி",kundliSub:"உங்கள் பிறப்பு விவரங்களை உள்ளிடுங்கள்",formTitle:"உங்கள் குண்டலியை சரிபார்க்கவும்",formSub:"கட்டாய புலங்கள் * குறிக்கப்பட்டுள்ளன",labelName:"முழு பெயர்",labelDob:"பிறந்த தேதி",labelTob:"பிறந்த நேரம்",labelPob:"பிறந்த இடம்",labelGender:"பாலினம்",genderSelect:"— பாலினம் தேர்வு —",genderMale:"ஆண்",genderFemale:"பெண்",genderOther:"மற்றவை",labelLang:"மொழி",genBtn:"✦  குண்டலி உருவாக்கு  ✦",chartTitle:"வட இந்திய குண்டலி",planetTitle:"கிரக நிலைகள்",colGraha:"கிரகம்",colRashi:"ராசி",colHouse:"பாவம்",panchangTitle:"இன்றைய பஞ்சாங்கம்",panchangSub:"வேத நாட்காட்டியின் ஐந்து புனித அங்கங்கள்",rashifalTitle:"தினசரி ராசிபலன்",rashifalSub:"உங்கள் ராசியை தேர்வு செய்யுங்கள்",rashiHint:"👇 உங்கள் ராசியை தட்டவும்"},
+  te:{badge:"భారతదేశపు ఉచిత వైదిక జ్యోతిష్య వేదిక",heroHindi:"ఉచిత కుండలి • రోజువారీ పంచాంగం • రాశిఫలం",heroTag:"మీ ఉచిత జన్మ కుండలిని తనిఖీ చేయండి.",stat1:"కుండలీలు",stat2:"రాశులు",stat3:"ఎల్లప్పుడూ ఉచితం",stat4:"భారతీయ భాషలు",heroCta1:"🔮 నా కుండలి చూడండి",heroCta2:"📅 నేటి పంచాంగం",kundliTitle:"జన్మ కుండలి",kundliSub:"మీ జన్మ వివరాలు నమోదు చేయండి",formTitle:"మీ కుండలి తనిఖీ చేయండి",formSub:"* గుర్తు చేయబడిన ఫీల్డ్‌లు తప్పనిసరి",labelName:"పూర్తి పేరు",labelDob:"జన్మ తేదీ",labelTob:"జన్మ సమయం",labelPob:"జన్మ స్థలం",labelGender:"లింగం",genderSelect:"— లింగం ఎంచుకోండి —",genderMale:"పురుషుడు",genderFemale:"స్త్రీ",genderOther:"ఇతర",labelLang:"భాష",genBtn:"✦  నా కుండలి రూపొందించు  ✦",chartTitle:"ఉత్తర భారత కుండలి",planetTitle:"గ్రహ స్థానాలు",colGraha:"గ్రహం",colRashi:"రాశి",colHouse:"భావం",panchangTitle:"నేటి పంచాంగం",panchangSub:"వైదిక పంచాంగంలోని ఐదు పవిత్ర అంశాలు",rashifalTitle:"రోజువారీ రాశిఫలం",rashifalSub:"మీ రాశి ఎంచుకోండి",rashiHint:"👇 మీ రాశిని నొక్కండి"},
+  mr:{badge:"भारताचे मोफत वैदिक ज्योतिष व्यासपीठ",heroHindi:"मोफत कुंडली • दैनंदिन पंचांग • राशीभविष्य",heroTag:"तुमची मोफत जन्मकुंडली तपासा, आजचे पंचांग वाचा.",stat1:"कुंडल्या",stat2:"राशी",stat3:"नेहमी मोफत",stat4:"भारतीय भाषा",heroCta1:"🔮 माझी कुंडली पहा",heroCta2:"📅 आजचे पंचांग",kundliTitle:"जन्म कुंडली",kundliSub:"तुमचे जन्म तपशील भरा",formTitle:"तुमची कुंडली तपासा",formSub:"* असलेले रकाने अनिवार्य आहेत",labelName:"पूर्ण नाव",labelDob:"जन्म तारीख",labelTob:"जन्म वेळ",labelPob:"जन्म ठिकाण",labelGender:"लिंग",genderSelect:"— लिंग निवडा —",genderMale:"पुरुष",genderFemale:"स्त्री",genderOther:"इतर",labelLang:"भाषा",genBtn:"✦  माझी कुंडली तयार करा  ✦",chartTitle:"उत्तर भारतीय कुंडली",planetTitle:"ग्रह स्थिती",colGraha:"ग्रह",colRashi:"राशी",colHouse:"भाव",panchangTitle:"आजचे पंचांग",panchangSub:"हिंदू पंचांगाचे पाच पवित्र घटक",rashifalTitle:"दैनंदिन राशीभविष्य",rashifalSub:"तुमची राशी निवडा",rashiHint:"👇 तुमच्या राशीवर टॅप करा"},
+  gu:{badge:"ભારતનું મફત વૈદિક જ્યોતિષ પ્લેટફોર્મ",heroHindi:"મફત કુંડળી • દૈનિક પંચાંગ • રાશિફળ",heroTag:"તમારી મફત જન્મ કુંડળી ચકાસો.",stat1:"કુંડળીઓ",stat2:"રાશિઓ",stat3:"હંમેશ મફત",stat4:"ભારતીય ભાષાઓ",heroCta1:"🔮 મારી કુંડળી જુઓ",heroCta2:"📅 આજનું પંચાંગ",kundliTitle:"જન્મ કુંડળી",kundliSub:"તમારી જન્મ વિગતો દાખલ કરો",formTitle:"તમારી કુંડળી ચકાસો",formSub:"* ચિહ્નિત ક્ષેત્રો ફરજિયાત છે",labelName:"પૂરું નામ",labelDob:"જન્મ તારીખ",labelTob:"જન્મ સમય",labelPob:"જન્મ સ્થળ",labelGender:"જાતિ",genderSelect:"— જાતિ પસંદ કરો —",genderMale:"પુરુષ",genderFemale:"સ્ત્રી",genderOther:"અન્ય",labelLang:"ભાષા",genBtn:"✦  મારી કુંડળી બનાવો  ✦",chartTitle:"ઉત્તર ભારતીય કુંડળી",planetTitle:"ગ્રહ સ્થિતિ",colGraha:"ગ્રહ",colRashi:"રાશિ",colHouse:"ભાવ",panchangTitle:"આજનું પંચાંગ",panchangSub:"વૈદિક પંચાંગના પાંચ પવિત્ર તત્વો",rashifalTitle:"દૈનિક રાશિફળ",rashifalSub:"તમારી રાશિ પસંદ કરો",rashiHint:"👇 તમારી રાશિ ટૅપ કરો"},
+  bn:{badge:"ভারতের বিনামূল্যে বৈদিক জ্যোতিষ প্ল্যাটফর্ম",heroHindi:"বিনামূল্যে কুণ্ডলী • দৈনিক পঞ্চাং • রাশিফল",heroTag:"আপনার বিনামূল্যে জন্ম কুণ্ডলী পরীক্ষা করুন।",stat1:"কুণ্ডলী",stat2:"রাশি",stat3:"সর্বদা বিনামূল্যে",stat4:"ভারতীয় ভাষা",heroCta1:"🔮 আমার কুণ্ডলী দেখুন",heroCta2:"📅 আজকের পঞ্চাং",kundliTitle:"জন্ম কুণ্ডলী",kundliSub:"আপনার জন্মের বিবরণ দিন",formTitle:"আপনার কুণ্ডলী পরীক্ষা করুন",formSub:"* চিহ্নিত ক্ষেত্রগুলি আবশ্যিক",labelName:"পুরো নাম",labelDob:"জন্ম তারিখ",labelTob:"জন্ম সময়",labelPob:"জন্মস্থান",labelGender:"লিঙ্গ",genderSelect:"— লিঙ্গ নির্বাচন —",genderMale:"পুরুষ",genderFemale:"মহিলা",genderOther:"অন্যান্য",labelLang:"ভাষা",genBtn:"✦  আমার কুণ্ডলী তৈরি করুন  ✦",chartTitle:"উত্তর ভারতীয় কুণ্ডলী",planetTitle:"গ্রহ অবস্থান",colGraha:"গ্রহ",colRashi:"রাশি",colHouse:"ভাব",panchangTitle:"আজকের পঞ্চাং",panchangSub:"বৈদিক পঞ্চাঙ্গের পাঁচটি পবিত্র উপাদান",rashifalTitle:"দৈনিক রাশিফল",rashifalSub:"আপনার রাশি নির্বাচন করুন",rashiHint:"👇 আপনার রাশি নির্বাচন করুন"},
+  kn:{badge:"ಭಾರತದ ಉಚಿತ ವೈದಿಕ ಜ್ಯೋತಿಷ ವೇದಿಕೆ",heroHindi:"ಉಚಿತ ಕುಂಡಲಿ • ದಿನದ ಪಂಚಾಂಗ • ರಾಶಿಫಲ",heroTag:"ನಿಮ್ಮ ಉಚಿತ ಜನ್ಮ ಕುಂಡಲಿ ಪರಿಶೀಲಿಸಿ.",stat1:"ಕುಂಡಲಿಗಳು",stat2:"ರಾಶಿಗಳು",stat3:"ಯಾವಾಗಲೂ ಉಚಿತ",stat4:"ಭಾರತೀಯ ಭಾಷೆಗಳು",heroCta1:"🔮 ನನ್ನ ಕುಂಡಲಿ ನೋಡಿ",heroCta2:"📅 ಇಂದಿನ ಪಂಚಾಂಗ",kundliTitle:"ಜನ್ಮ ಕುಂಡಲಿ",kundliSub:"ನಿಮ್ಮ ಜನ್ಮ ವಿವರಗಳನ್ನು ನಮೂದಿಸಿ",formTitle:"ನಿಮ್ಮ ಕುಂಡಲಿ ಪರಿಶೀಲಿಸಿ",formSub:"* ಗುರುತಿಸಲಾದ ಕ್ಷೇತ್ರಗಳು ಕಡ್ಡಾಯ",labelName:"ಪೂರ್ಣ ಹೆಸರು",labelDob:"ಜನ್ಮ ದಿನಾಂಕ",labelTob:"ಜನ್ಮ ಸಮಯ",labelPob:"ಜನ್ಮ ಸ್ಥಳ",labelGender:"ಲಿಂಗ",genderSelect:"— ಲಿಂಗ ಆಯ್ಕೆ —",genderMale:"ಪುರುಷ",genderFemale:"ಮಹಿಳೆ",genderOther:"ಇತರೆ",labelLang:"ಭಾಷೆ",genBtn:"✦  ನನ್ನ ಕುಂಡಲಿ ರಚಿಸಿ  ✦",chartTitle:"ಉತ್ತರ ಭಾರತೀಯ ಕುಂಡಲಿ",planetTitle:"ಗ್ರಹ ಸ್ಥಾನಗಳು",colGraha:"ಗ್ರಹ",colRashi:"ರಾಶಿ",colHouse:"ಭಾವ",panchangTitle:"ಇಂದಿನ ಪಂಚಾಂಗ",panchangSub:"ವೈದಿಕ ಪಂಚಾಂಗದ ಐದು ಪವಿತ್ರ ಅಂಶಗಳು",rashifalTitle:"ದಿನದ ರಾಶಿಫಲ",rashifalSub:"ನಿಮ್ಮ ರಾಶಿ ಆಯ್ಕೆ ಮಾಡಿ",rashiHint:"👇 ನಿಮ್ಮ ರಾಶಿಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ"}
+};
+
+var curLang='en';
+function changeLang(l){
+  curLang=l;
+  var L=LANGS[l]||LANGS.en;
+  document.querySelectorAll('[data-t]').forEach(function(el){
+    var k=el.getAttribute('data-t');
+    if(L[k]!==undefined) el.innerHTML=L[k];
+  });
+  document.querySelectorAll('.lang-select').forEach(function(s){s.value=l;});
+  document.getElementById('kLangChart').value=l;
+}
+
+/* ═══ ASTRO DATA ═══ */
 var RASHIS=[{id:0,hi:'मेष',en:'Aries',sym:'♈',dates:'Mar 21–Apr 19',lord:'Mars',el:'Fire'},{id:1,hi:'वृष',en:'Taurus',sym:'♉',dates:'Apr 20–May 20',lord:'Venus',el:'Earth'},{id:2,hi:'मिथुन',en:'Gemini',sym:'♊',dates:'May 21–Jun 20',lord:'Mercury',el:'Air'},{id:3,hi:'कर्क',en:'Cancer',sym:'♋',dates:'Jun 21–Jul 22',lord:'Moon',el:'Water'},{id:4,hi:'सिंह',en:'Leo',sym:'♌',dates:'Jul 23–Aug 22',lord:'Sun',el:'Fire'},{id:5,hi:'कन्या',en:'Virgo',sym:'♍',dates:'Aug 23–Sep 22',lord:'Mercury',el:'Earth'},{id:6,hi:'तुला',en:'Libra',sym:'♎',dates:'Sep 23–Oct 22',lord:'Venus',el:'Air'},{id:7,hi:'वृश्चिक',en:'Scorpio',sym:'♏',dates:'Oct 23–Nov 21',lord:'Mars',el:'Water'},{id:8,hi:'धनु',en:'Sagittarius',sym:'♐',dates:'Nov 22–Dec 21',lord:'Jupiter',el:'Fire'},{id:9,hi:'मकर',en:'Capricorn',sym:'♑',dates:'Dec 22–Jan 19',lord:'Saturn',el:'Earth'},{id:10,hi:'कुम्भ',en:'Aquarius',sym:'♒',dates:'Jan 20–Feb 18',lord:'Saturn',el:'Air'},{id:11,hi:'मीन',en:'Pisces',sym:'♓',dates:'Feb 19–Mar 20',lord:'Jupiter',el:'Water'}];
 var GRAHAS=[{n:'Sun ☀️',sym:'☉'},{n:'Moon 🌙',sym:'☽'},{n:'Mars 🔴',sym:'♂'},{n:'Mercury 💚',sym:'☿'},{n:'Jupiter 🟡',sym:'♃'},{n:'Venus 🩷',sym:'♀'},{n:'Saturn 🔵',sym:'♄'},{n:'Rahu 🐍',sym:'☊'},{n:'Ketu ☄️',sym:'☋'}];
 var TITHIS=['Pratipada','Dwitiya','Tritiya','Chaturthi','Panchami','Shashthi','Saptami','Ashtami','Navami','Dashami','Ekadashi','Dwadashi','Trayodashi','Chaturdashi','Purnima'];
@@ -621,29 +704,198 @@ function starsStr(n){return '★'.repeat(n)+'☆'.repeat(5-n);}
 function rating(id,cat){return 3+Math.floor(sr(id*50+cat.length)*3);}
 function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.className='toast show';setTimeout(function(){t.className='toast';},4000);}
 
+/* ═══ PANCHANG ═══ */
 var pDay=new Date();
-function calcP(d){var s=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();return{vara:d.getDay(),tithi:Math.floor(sr(s*3)*15),nak:Math.floor(sr(s*7)*27),yoga:Math.floor(sr(s*11)*27),kar:Math.floor(sr(s*13)*11),masa:d.getMonth(),sunrise:'06:'+((15+Math.floor(sr(s)*20)).toString().padStart(2,'0')),sunset:'18:'+((28+Math.floor(sr(s*2)*20)).toString().padStart(2,'0')),moonrise:(19+Math.floor(sr(s*4)*4))+':'+Math.floor(sr(s*6)*60).toString().padStart(2,'0'),rahukaal:[7,8,9,10,11,12,13][d.getDay()]+':30 – '+([7,8,9,10,11,12,13][d.getDay()]+1)+':30',abhijit:(11+Math.floor(sr(s*5)*2))+':00 – '+(11+Math.floor(sr(s*5)*2))+':48'};}
-function renderP(){var p=calcP(pDay);var DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];document.getElementById('pdayLbl').textContent=DN[pDay.getDay()]+', '+pDay.getDate()+' '+MN[pDay.getMonth()]+' '+pDay.getFullYear();var five=[{icon:'📅',label:'Tithi',val:TITHIS[p.tithi]+' ('+(p.tithi+1)+'th)',time:'Until 08:47 AM'},{icon:'⭐',label:'Nakshatra',val:NAKS[p.nak],time:'Until 11:23 PM'},{icon:'✨',label:'Yoga',val:YOGAS[p.yoga],time:'Until 07:15 PM'},{icon:'🔮',label:'Karana',val:KARANAS[p.kar],time:'Until 09:00 PM'},{icon:'🌤️',label:'Vara',val:VARAS[p.vara],time:'All Day'}];document.getElementById('p5Grid').innerHTML=five.map(function(f){return'<div class="p5-card"><span class="p5-icon">'+f.icon+'</span><div class="p5-label">'+f.label+'</div><div class="p5-value">'+f.val+'</div><div class="p5-time">'+f.time+'</div></div>';}).join('');var extra=[{icon:'🌅',label:'Sunrise',val:p.sunrise+' IST'},{icon:'🌇',label:'Sunset',val:p.sunset+' IST'},{icon:'🌕',label:'Masa',val:MASAS[p.masa]+' Masa'},{icon:'⚠️',label:'Rahu Kaal',val:p.rahukaal},{icon:'✅',label:'Abhijit',val:p.abhijit},{icon:'🌙',label:'Moonrise',val:p.moonrise+' IST'}];document.getElementById('pexGrid').innerHTML=extra.map(function(e){return'<div class="pex-item"><span class="pex-icon">'+e.icon+'</span><div><div class="pex-label">'+e.label+'</div><div class="pex-val">'+e.val+'</div></div></div>';}).join('');document.getElementById('muhurtaRow').innerHTML='<span><span class="mh-dot g"></span><span class="mh-text"><strong>Shubha Muhurta:</strong> '+p.abhijit+' IST</span></span><span><span class="mh-dot b"></span><span class="mh-text"><strong>Rahu Kaal:</strong> '+p.rahukaal+' — Avoid new work</span></span><span><span class="mh-dot n"></span><span class="mh-text"><strong>Masa:</strong> '+MASAS[p.masa]+'</span></span>';}
-function shiftDay(d){pDay=new Date(pDay.getTime()+d*86400000);renderP();}
+function calcP(d){
+  var s=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();
+  return{vara:d.getDay(),tithi:Math.floor(sr(s*3)*15),nak:Math.floor(sr(s*7)*27),yoga:Math.floor(sr(s*11)*27),kar:Math.floor(sr(s*13)*11),masa:d.getMonth(),
+    sunrise:'06:'+((15+Math.floor(sr(s)*20)).toString().padStart(2,'0')),
+    sunset:'18:'+((28+Math.floor(sr(s*2)*20)).toString().padStart(2,'0')),
+    moonrise:(19+Math.floor(sr(s*4)*4))+':'+Math.floor(sr(s*6)*60).toString().padStart(2,'0'),
+    rahukaal:[7,8,9,10,11,12,13][d.getDay()]+':30 – '+([7,8,9,10,11,12,13][d.getDay()]+1)+':30',
+    abhijit:(11+Math.floor(sr(s*5)*2))+':00 – '+(11+Math.floor(sr(s*5)*2))+':48'};
+}
 
-function renderRashiGrid(){document.getElementById('rashiGrid').innerHTML=RASHIS.map(function(r){return'<div class="rcard" id="rc_'+r.id+'" onclick="pickRashi('+r.id+')">'+'<span class="rcard-sym">'+r.sym+'</span><div class="rcard-hi">'+r.hi+'</div><div class="rcard-en">'+r.en+'</div><div class="rcard-dt">'+r.dates+'</div></div>';}).join('');}
+function renderP(){
+  var p=calcP(pDay);
+  var DN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('pdayLbl').textContent=DN[pDay.getDay()]+', '+pDay.getDate()+' '+MN[pDay.getMonth()]+' '+pDay.getFullYear();
+  var five=[
+    {icon:'📅',label:'Tithi (तिथि)',val:TITHIS[p.tithi]+' ('+(p.tithi+1)+'th)',time:'Until 08:47 AM IST'},
+    {icon:'⭐',label:'Nakshatra (नक्षत्र)',val:NAKS[p.nak],time:'Until 11:23 PM IST'},
+    {icon:'✨',label:'Yoga (योग)',val:YOGAS[p.yoga],time:'Until 07:15 PM IST'},
+    {icon:'🔮',label:'Karana (करण)',val:KARANAS[p.kar],time:'Until 09:00 PM IST'},
+    {icon:'🌤️',label:'Vara (वार)',val:VARAS[p.vara],time:'All Day'}
+  ];
+  document.getElementById('p5Grid').innerHTML=five.map(function(f){
+    return'<div class="p5-card" tabindex="0"><span class="p5-icon">'+f.icon+'</span><div class="p5-label">'+f.label+'</div><div class="p5-value">'+f.val+'</div><div class="p5-time">'+f.time+'</div></div>';
+  }).join('');
+  var extra=[
+    {icon:'🌅',label:'Sunrise',val:p.sunrise+' IST'},
+    {icon:'🌇',label:'Sunset',val:p.sunset+' IST'},
+    {icon:'🌕',label:'Masa',val:MASAS[p.masa]+' Masa'},
+    {icon:'⚠️',label:'Rahu Kaal',val:p.rahukaal+' IST'},
+    {icon:'✅',label:'Abhijit Muhurta',val:p.abhijit+' IST'},
+    {icon:'🌙',label:'Moonrise',val:p.moonrise+' IST'}
+  ];
+  document.getElementById('pexGrid').innerHTML=extra.map(function(e){
+    return'<div class="pex-item"><span class="pex-icon" aria-hidden="true">'+e.icon+'</span><div><div class="pex-label">'+e.label+'</div><div class="pex-val">'+e.val+'</div></div></div>';
+  }).join('');
+  document.getElementById('muhurtaRow').innerHTML=
+    '<span style="display:flex;align-items:center;"><span class="mh-dot g" aria-hidden="true"></span><span class="mh-text"><strong>Shubha Muhurta:</strong> '+p.abhijit+' IST — Auspicious for new work</span></span>'+
+    '<span style="display:flex;align-items:center;"><span class="mh-dot b" aria-hidden="true"></span><span class="mh-text"><strong>Rahu Kaal:</strong> '+p.rahukaal+' IST — Avoid starting new activities</span></span>'+
+    '<span style="display:flex;align-items:center;"><span class="mh-dot n" aria-hidden="true"></span><span class="mh-text"><strong>Masa:</strong> '+MASAS[p.masa]+'</span></span>';
+}
+
+function shiftDay(d){
+  pDay=new Date(pDay.getTime()+d*86400000);
+  renderP();
+}
+
+/* ═══ RASHIFAL ═══ */
+function renderRashiGrid(){
+  document.getElementById('rashiGrid').innerHTML=RASHIS.map(function(r){
+    return'<div class="rcard" id="rc_'+r.id+'" onclick="pickRashi('+r.id+')" tabindex="0" role="button" aria-label="'+r.en+' '+r.hi+'" onkeydown="if(event.key===\'Enter\'||event.key===\' \')pickRashi('+r.id+')">'+'<span class="rcard-sym" aria-hidden="true">'+r.sym+'</span><div class="rcard-hi">'+r.hi+'</div><div class="rcard-en">'+r.en+'</div><div class="rcard-dt">'+r.dates+'</div></div>';
+  }).join('');
+}
 
 var curRashi=null,curPeriod='daily';
-function pickRashi(id){document.querySelectorAll('.rcard').forEach(function(c){c.classList.remove('on');});document.getElementById('rc_'+id).classList.add('on');curRashi=id;renderReading(id,curPeriod);document.getElementById('readingPanel').scrollIntoView({behavior:'smooth',block:'nearest'});}
-function setPeriod(p){curPeriod=p;document.querySelectorAll('.ptab').forEach(function(t){t.classList.remove('on');});document.querySelector('[data-p="'+p+'"]').classList.add('on');if(curRashi!==null)renderReading(curRashi,p);}
-function renderReading(id,period){var r=RASHIS[id],s=id+new Date().getDate(),ov=rating(id,'overall');var panel=document.getElementById('readingPanel');panel.className='reading-panel show';panel.innerHTML='<div class="rp-head"><span class="rp-sym">'+r.sym+'</span><div><div class="rp-name">'+r.hi+' — '+r.en+'</div><div class="rp-meta">'+r.dates+' | Lord: '+r.lord+' | '+r.el+'</div><div class="stars-row" style="margin-top:0.3rem">'+starsStr(ov)+'</div></div></div><div class="period-tabs"><button class="ptab '+(period==='daily'?'on':'')+'" data-p="daily" onclick="setPeriod(\'daily\')">Today</button><button class="ptab '+(period==='weekly'?'on':'')+'" data-p="weekly" onclick="setPeriod(\'weekly\')">This Week</button><button class="ptab '+(period==='monthly'?'on':'')+'" data-p="monthly" onclick="setPeriod(\'monthly\')">This Month</button></div><div class="reading-cats"><div class="rcat"><div class="rcat-title">💕 Love</div><div class="stars-row">'+starsStr(rating(id,'love'))+'</div><div class="rcat-text">'+pick(HTEXTS.love,s*2)+'</div></div><div class="rcat"><div class="rcat-title">💼 Career</div><div class="stars-row">'+starsStr(rating(id,'career'))+'</div><div class="rcat-text">'+pick(HTEXTS.career,s*3)+'</div></div><div class="rcat"><div class="rcat-title">🌿 Health</div><div class="stars-row">'+starsStr(rating(id,'health'))+'</div><div class="rcat-text">'+pick(HTEXTS.health,s*5)+'</div></div><div class="rcat"><div class="rcat-title">🌟 Overall</div><div class="stars-row">'+starsStr(ov)+'</div><div class="rcat-text">'+pick(HTEXTS.overall,s*7)+'</div></div><div class="rcat"><div class="rcat-title">🍀 Lucky Today</div><div class="lucky-pills"><span class="lpill">🎨 '+pick(COLORS,s*11)+'</span><span class="lpill">🔢 '+pick(NUMBERS,s*13)+'</span><span class="lpill">💎 '+pick(GEMS,s*17)+'</span></div></div><div class="rcat"><div class="rcat-title">📜 Vedic Tip</div><div class="rcat-text">Your lord <strong style="color:#E8B000">'+r.lord+'</strong> governs this '+period+'. Chanting the '+r.lord+' mantra 108× at sunrise amplifies all positive influences.</div></div></div>';}
 
-function generateKundli(){var dob=document.getElementById('kDob').value;if(!dob){toast('⚠️ Please enter your date of birth.');return;}var btn=document.getElementById('genBtn'),txt=document.getElementById('genBtnTxt');btn.disabled=true;txt.innerHTML='<span class="spin"></span> Calculating...';setTimeout(function(){btn.disabled=false;txt.innerHTML='✦ &nbsp; Generate My Free Kundli &nbsp; ✦';var date=new Date(dob),seed=date.getFullYear()*365+date.getMonth()*30+date.getDate(),lagna=Math.floor(sr(seed)*12);var planets=GRAHAS.map(function(g,i){return{n:g.n,sym:g.sym,house:Math.floor(sr(seed*(i+3))*12)+1,rashi:Math.floor(sr(seed*(i+7))*12),deg:(sr(seed*(i+11))*29+0.5).toFixed(1)};});drawChart(lagna,planets);renderTable(planets);renderAnalysis(lagna,planets,date);var r=document.getElementById('kResult');r.className='kundli-result show';r.scrollIntoView({behavior:'smooth',block:'start'});toast('✅ Kundli generated for '+(document.getElementById('kName').value||'you')+'!');},1200);}
+function pickRashi(id){
+  document.querySelectorAll('.rcard').forEach(function(c){c.classList.remove('on');c.setAttribute('aria-pressed','false');});
+  var card=document.getElementById('rc_'+id);
+  card.classList.add('on');
+  card.setAttribute('aria-pressed','true');
+  curRashi=id;
+  renderReading(id,curPeriod);
+  setTimeout(function(){document.getElementById('readingPanel').scrollIntoView({behavior:'smooth',block:'nearest'});},100);
+}
 
-function drawChart(lagna,planets){var svg=document.getElementById('kSvg');var pos=[[150,38],[258,42],[265,150],[258,258],[150,262],[42,258],[38,150],[42,42],[150,118],[184,150],[150,182],[116,150]];var hord=[1,2,3,4,5,6,7,8,12,11,10,9];var h='<rect width="300" height="300" fill="#FFFDF8" stroke="#4A0C0C" stroke-width="2"/><rect x="2" y="2" width="296" height="296" fill="none" stroke="#C8940A" stroke-width="0.5"/><line x1="150" y1="0" x2="300" y2="150" stroke="#4A0C0C" stroke-width="1.5"/><line x1="300" y1="150" x2="150" y2="300" stroke="#4A0C0C" stroke-width="1.5"/><line x1="150" y1="300" x2="0" y2="150" stroke="#4A0C0C" stroke-width="1.5"/><line x1="0" y1="150" x2="150" y2="0" stroke="#4A0C0C" stroke-width="1.5"/><line x1="0" y1="0" x2="300" y2="300" stroke="#4A0C0C" stroke-width="1.5"/><line x1="300" y1="0" x2="0" y2="300" stroke="#4A0C0C" stroke-width="1.5"/><polygon points="150,75 225,150 150,225 75,150" fill="rgba(200,148,10,0.07)" stroke="#C8940A" stroke-width="1"/><text x="150" y="26" text-anchor="middle" font-size="9" fill="#C8940A" font-weight="bold" font-family="serif">Lagna: '+RASHIS[lagna].en+'</text>';pos.forEach(function(p,i){var rashi=(lagna+hord[i]-1)%12;h+='<text x="'+p[0]+'" y="'+p[1]+'" text-anchor="middle" font-size="9.5" fill="#4A0C0C" font-family="serif">'+RASHIS[rashi].en.substring(0,3)+'</text>';});planets.slice(0,7).forEach(function(p,i){var idx=p.house-1;if(idx<pos.length){var off=(i%3)*10-10;h+='<text x="'+(pos[idx][0]+off)+'" y="'+(pos[idx][1]+14)+'" text-anchor="middle" font-size="9" fill="#E8660A" font-family="serif" font-weight="bold">'+p.sym+'</text>';}});svg.innerHTML=h;}
-function renderTable(planets){document.getElementById('kPbody').innerHTML=planets.map(function(p){return'<tr><td>'+p.n+'</td><td><span class="rbadge">'+RASHIS[p.rashi].en+'</span></td><td>'+p.house+'</td><td>'+p.deg+'°</td></tr>';}).join('');}
-function renderAnalysis(lagna,planets,date){var asc=RASHIS[lagna],moon=RASHIS[planets[1].rashi],sun=RASHIS[planets[0].rashi],jup=planets[4],sat=planets[6],ven=planets[5];var yogas=[];if([1,5,9].indexOf(jup.house)>-1)yogas.push('Hamsa Yoga');if([1,7,10].indexOf(sat.house)>-1)yogas.push('Shasha Yoga');if([1,4,7].indexOf(ven.house)>-1)yogas.push('Malavya Yoga');if(!yogas.length)yogas.push('Chandra-Mangal Yoga');var careers=['arts & culture','business & finance','teaching & knowledge','healing & medicine','technology & innovation','law & justice'];var partners=['artistic and sensitive','grounded and loyal','communicative and curious','nurturing and protective','charismatic and dynamic','analytical and devoted'];var cards=[{t:'🌅 Lagna (Ascendant)',txt:'Your Lagna is <strong>'+asc.en+'</strong> ('+asc.hi+'), ruled by <strong>'+asc.lord+'</strong>. A '+asc.el+' sign — you carry determination and the qualities of your ruling planet throughout life.'},{t:'🌙 Chandra Rashi',txt:'Moon in <strong>'+moon.en+'</strong> ('+moon.hi+'). Your emotional intelligence is shaped by '+moon.lord+"'s influence through a "+moon.el+' lens.'},{t:'☀️ Surya Rashi',txt:'Sun in <strong>'+sun.en+'</strong> ('+sun.hi+'). Your soul\'s purpose is under '+sun.lord+"'s guidance — giving you "+sun.el+' energy.'},{t:'🔮 Special Yogas',txt:'Your chart holds <strong>'+yogas.join(', ')+'</strong>. These powerful combinations bring distinctive blessings. Daily puja amplifies these yogas.'},{t:'💼 Career & Dharma',txt:'Your 10th house alignment suggests natural aptitude for <strong>'+careers[Math.floor(sr(lagna*7)*6)]+'</strong>. Jupiter supports long-term professional growth.'},{t:'💑 Marriage',txt:'Venus in the '+ven.house+(['st','nd','rd','th'][Math.min(ven.house-1,3)])+' house shapes your relationship karma. You attract partners who are <strong>'+partners[Math.floor(sr(ven.rashi*3)*6)]+'</strong>.'}];document.getElementById('kAnalysis').innerHTML=cards.map(function(c){return'<div class="acard"><h4>'+c.t+'</h4><p>'+c.txt+'</p></div>';}).join('');}
+function setPeriod(p){
+  curPeriod=p;
+  document.querySelectorAll('.ptab').forEach(function(t){t.classList.remove('on');t.setAttribute('aria-selected','false');});
+  var tab=document.querySelector('[data-p="'+p+'"]');
+  tab.classList.add('on');
+  tab.setAttribute('aria-selected','true');
+  if(curRashi!==null)renderReading(curRashi,p);
+}
 
-function toggleMenu(){var ul=document.querySelector('.nav-menu');var open=ul.style.display==='flex';if(open){ul.style.display='none';}else{ul.style.cssText='display:flex;flex-direction:column;position:absolute;top:58px;right:1rem;background-color:#2A0505;border:1px solid #C8940A;border-radius:10px;padding:0.5rem;gap:0.2rem;z-index:998;';}}
+function renderReading(id,period){
+  var r=RASHIS[id],s=id+new Date().getDate(),ov=rating(id,'overall');
+  var panel=document.getElementById('readingPanel');
+  panel.className='reading-panel show';
+  panel.innerHTML=
+    '<div class="rp-head">'+
+      '<span class="rp-sym" aria-hidden="true">'+r.sym+'</span>'+
+      '<div><div class="rp-name">'+r.hi+' — '+r.en+'</div>'+
+      '<div class="rp-meta">'+r.dates+' &nbsp;|&nbsp; Lord: <strong>'+r.lord+'</strong> &nbsp;|&nbsp; '+r.el+'</div>'+
+      '<div class="stars-row" aria-label="Overall rating '+ov+' out of 5">'+starsStr(ov)+' <span style="font-size:0.78rem;color:rgba(254,246,228,0.4)">Overall</span></div></div>'+
+    '</div>'+
+    '<div class="period-tabs" role="tablist" aria-label="Horoscope period">'+
+      '<button class="ptab '+(period==='daily'?'on':'')+'" data-p="daily" onclick="setPeriod(\'daily\')" role="tab" aria-selected="'+(period==='daily'?'true':'false')+'">Today</button>'+
+      '<button class="ptab '+(period==='weekly'?'on':'')+'" data-p="weekly" onclick="setPeriod(\'weekly\')" role="tab" aria-selected="'+(period==='weekly'?'true':'false')+'">This Week</button>'+
+      '<button class="ptab '+(period==='monthly'?'on':'')+'" data-p="monthly" onclick="setPeriod(\'monthly\')" role="tab" aria-selected="'+(period==='monthly'?'true':'false')+'">This Month</button>'+
+    '</div>'+
+    '<div class="reading-cats">'+
+      '<div class="rcat"><div class="rcat-title">💕 Love &amp; Relationships</div><div class="stars-row">'+starsStr(rating(id,'love'))+'</div><div class="rcat-text">'+pick(HTEXTS.love,s*2)+'</div></div>'+
+      '<div class="rcat"><div class="rcat-title">💼 Career &amp; Finance</div><div class="stars-row">'+starsStr(rating(id,'career'))+'</div><div class="rcat-text">'+pick(HTEXTS.career,s*3)+'</div></div>'+
+      '<div class="rcat"><div class="rcat-title">🌿 Health &amp; Wellness</div><div class="stars-row">'+starsStr(rating(id,'health'))+'</div><div class="rcat-text">'+pick(HTEXTS.health,s*5)+'</div></div>'+
+      '<div class="rcat"><div class="rcat-title">🌟 Overall Guidance</div><div class="stars-row">'+starsStr(ov)+'</div><div class="rcat-text">'+pick(HTEXTS.overall,s*7)+'</div></div>'+
+      '<div class="rcat"><div class="rcat-title">🍀 Lucky Today</div><div class="lucky-pills"><span class="lpill">🎨 '+pick(COLORS,s*11)+'</span><span class="lpill">🔢 '+pick(NUMBERS,s*13)+'</span><span class="lpill">💎 '+pick(GEMS,s*17)+'</span></div></div>'+
+      '<div class="rcat"><div class="rcat-title">📜 Vedic Tip</div><div class="rcat-text">Your lord <strong style="color:#E8B000">'+r.lord+'</strong> governs this '+period+'. Chanting the '+r.lord+' mantra 108 times at sunrise amplifies positive planetary influences.</div></div>'+
+    '</div>';
+}
 
-renderP();renderRashiGrid();
-document.getElementById('kDob').valueAsDate=new Date(1995,5,15);
-document.getElementById('kTob').value='12:00';
+/* ═══ KUNDLI VALIDATION ═══ */
+function validateKundli(){
+  var valid=true;
+  var dob=document.getElementById('kDob').value;
+  var pob=document.getElementById('kPob').value.trim();
+  var fgDob=document.getElementById('fg-dob');
+  var fgPob=document.getElementById('fg-pob');
+  fgDob.classList.remove('invalid');fgPob.classList.remove('invalid');
+  if(!dob){fgDob.classList.add('invalid');valid=false;}
+  if(!pob){fgPob.classList.add('invalid');valid=false;}
+  return valid;
+}
+
+/* ═══ KUNDLI GENERATE ═══ */
+function generateKundli(){
+  if(!validateKundli()){toast('⚠️ Please fill in the required fields.');return;}
+  var btn=document.getElementById('genBtn'),txt=document.getElementById('genBtnTxt');
+  btn.disabled=true;
+  txt.innerHTML='<span class="spin"></span> Calculating planetary positions...';
+  document.getElementById('kundliEmpty').style.display='none';
+  setTimeout(function(){
+    btn.disabled=false;
+    txt.innerHTML=LANGS[curLang].genBtn||'✦  Generate My Free Kundli  ✦';
+    var dob=document.getElementById('kDob').value;
+    var date=new Date(dob);
+    var seed=date.getFullYear()*365+date.getMonth()*30+date.getDate();
+    var lagna=Math.floor(sr(seed)*12);
+    var planets=GRAHAS.map(function(g,i){return{n:g.n,sym:g.sym,house:Math.floor(sr(seed*(i+3))*12)+1,rashi:Math.floor(sr(seed*(i+7))*12),deg:(sr(seed*(i+11))*29+0.5).toFixed(1)};});
+    drawChart(lagna,planets);
+    renderTable(planets);
+    renderAnalysis(lagna,planets,date);
+    var r=document.getElementById('kResult');
+    r.className='kundli-result show';
+    setTimeout(function(){r.scrollIntoView({behavior:'smooth',block:'start'});},100);
+    toast('✅ Kundli generated for '+(document.getElementById('kName').value||'you')+'!');
+  },1200);
+}
+
+function drawChart(lagna,planets){
+  var svg=document.getElementById('kSvg');
+  var pos=[[150,38],[258,42],[265,150],[258,258],[150,262],[42,258],[38,150],[42,42],[150,118],[184,150],[150,182],[116,150]];
+  var hord=[1,2,3,4,5,6,7,8,12,11,10,9];
+  var h='<rect width="300" height="300" fill="#FFFDF8" stroke="#4A0C0C" stroke-width="2"/>'+
+    '<rect x="2" y="2" width="296" height="296" fill="none" stroke="#C8940A" stroke-width="0.5"/>'+
+    '<line x1="150" y1="0" x2="300" y2="150" stroke="#4A0C0C" stroke-width="1.5"/>'+
+    '<line x1="300" y1="150" x2="150" y2="300" stroke="#4A0C0C" stroke-width="1.5"/>'+
+    '<line x1="150" y1="300" x2="0" y2="150" stroke="#4A0C0C" stroke-width="1.5"/>'+
+    '<line x1="0" y1="150" x2="150" y2="0" stroke="#4A0C0C" stroke-width="1.5"/>'+
+    '<line x1="0" y1="0" x2="300" y2="300" stroke="#4A0C0C" stroke-width="1.5"/>'+
+    '<line x1="300" y1="0" x2="0" y2="300" stroke="#4A0C0C" stroke-width="1.5"/>'+
+    '<polygon points="150,75 225,150 150,225 75,150" fill="rgba(200,148,10,0.07)" stroke="#C8940A" stroke-width="1"/>'+
+    '<text x="150" y="24" text-anchor="middle" font-size="9" fill="#C8940A" font-weight="bold" font-family="serif">Lagna: '+RASHIS[lagna].en+'</text>';
+  pos.forEach(function(p,i){var rashi=(lagna+hord[i]-1)%12;h+='<text x="'+p[0]+'" y="'+p[1]+'" text-anchor="middle" font-size="9.5" fill="#4A0C0C" font-family="serif">'+RASHIS[rashi].en.substring(0,3)+'</text>';});
+  planets.slice(0,7).forEach(function(p,i){var idx=p.house-1;if(idx<pos.length){var off=(i%3)*10-10;h+='<text x="'+(pos[idx][0]+off)+'" y="'+(pos[idx][1]+14)+'" text-anchor="middle" font-size="9" fill="#E8660A" font-family="serif" font-weight="bold">'+p.sym+'</text>';}});
+  svg.innerHTML=h;
+}
+
+function renderTable(planets){
+  document.getElementById('kPbody').innerHTML=planets.map(function(p){
+    return'<tr><td>'+p.n+'</td><td><span class="rbadge">'+RASHIS[p.rashi].en+'</span></td><td>'+p.house+'</td><td>'+p.deg+'°</td></tr>';
+  }).join('');
+}
+
+function renderAnalysis(lagna,planets,date){
+  var asc=RASHIS[lagna],moon=RASHIS[planets[1].rashi],sun=RASHIS[planets[0].rashi];
+  var jup=planets[4],sat=planets[6],ven=planets[5];
+  var yogas=[];
+  if([1,5,9].indexOf(jup.house)>-1)yogas.push('Hamsa Yoga');
+  if([1,7,10].indexOf(sat.house)>-1)yogas.push('Shasha Yoga');
+  if([1,4,7].indexOf(ven.house)>-1)yogas.push('Malavya Yoga');
+  if(!yogas.length)yogas.push('Chandra-Mangal Yoga');
+  var careers=['arts & culture','business & finance','teaching & knowledge','healing & medicine','technology & innovation','law & justice'];
+  var partners=['artistic and sensitive','grounded and loyal','communicative and curious','nurturing and protective','charismatic and dynamic','analytical and devoted'];
+  var cards=[
+    {t:'🌅 Lagna (Ascendant)',txt:'Your Lagna is <strong>'+asc.en+'</strong> ('+asc.hi+'), ruled by <strong>'+asc.lord+'</strong>. A '+asc.el+' sign — you carry the drive, expression and energy of your ruling planet throughout life.'},
+    {t:'🌙 Chandra Rashi (Moon Sign)',txt:'Moon in <strong>'+moon.en+'</strong> ('+moon.hi+'). Your emotional intelligence is shaped by '+moon.lord+"'s influence. Inwardly you process feelings through a "+moon.el+' lens.'},
+    {t:'☀️ Surya Rashi (Sun Sign)',txt:'Sun in <strong>'+sun.en+'</strong> ('+sun.hi+'). Your soul\'s purpose and core identity are under '+sun.lord+"'s guidance, giving you "+sun.el+' energy.'},
+    {t:'🔮 Special Yogas',txt:'Your chart contains <strong>'+yogas.join(', ')+'</strong>. These powerful combinations bring distinctive blessings. Daily puja and mantra chanting amplify these yogas.'},
+    {t:'💼 Career & Dharma',txt:'Your 10th house alignment suggests natural aptitude for <strong>'+careers[Math.floor(sr(lagna*7)*6)]+'</strong>. Jupiter\'s placement supports long-term professional recognition.'},
+    {t:'💑 Marriage & Relationships',txt:'Venus in the '+ven.house+(['st','nd','rd','th'][Math.min(ven.house-1,3)])+' house shapes your relationship karma. You naturally attract partners who are <strong>'+partners[Math.floor(sr(ven.rashi*3)*6)]+'</strong>.'}
+  ];
+  document.getElementById('kAnalysis').innerHTML=cards.map(function(c){
+    return'<div class="acard"><h4>'+c.t+'</h4><p>'+c.txt+'</p></div>';
+  }).join('');
+}
+
+/* ═══ INIT ═══ */
+renderP();
+renderRashiGrid();
+/* All form fields empty by default — no pre-filled values */
 </script>
 
 </body>
