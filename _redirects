@@ -1,0 +1,7 @@
+https://www.kundlichecking.com/* https://kundlichecking.com/:splat 301!
+
+/kundli-matching    /kundli-matching.html   200
+/horoscope          /horoscope.html         200
+/horoscope/:rashi   /horoscope.html?r=:rashi 200
+/free-kundli        /index.html             200
+/panchang-today     /index.html#panchang    200
