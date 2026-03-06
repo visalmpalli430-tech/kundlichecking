@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Daily Horoscope Today — All 12 Rashis | KundliChecking.com</title>
+<meta name="description" id="pageDesc" content="Free daily horoscope for all 12 zodiac signs. Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces horoscope today.">
+<link rel="canonical" id="pageCanonical" href="https://kundlichecking.com/horoscope.html">
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{font-family:'Crimson Pro',Georgia,serif;background:#FEF6E4;color:#1E0808;line-height:1.6;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;background:#2A0505;border-bottom:2px solid #C8940A;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;box-shadow:0 3px 20px rgba(0,0,0,.5);}
+.nav-logo{font-family:‘Yatra One’,serif;font-size:1.1rem;color:#FFD740;display:flex;align-items:center;gap:6px;}
+.nav-logo span{color:#FF8C20;}
+.nav-links{display:flex;gap:.3rem;list-style:none;align-items:center;}
+.nav-links a{color:rgba(254,246,228,.8);font-size:.85rem;padding:.3rem .7rem;border-radius:14px;transition:all .2s;}
+.nav-links a:hover,.nav-links a.active{background:rgba(200,148,10,.25);color:#FFD740;}
+.nav-links a.cta{background:linear-gradient(135deg,#E8660A,#C8940A);color:white!important;font-weight:700;}
+@media(max-width:620px){.nav-links .hide-mob{display:none;}}
+
+/* PAGE HEADER */
+.page-wrap{max-width:1000px;margin:0 auto;padding:80px 1.2rem 3rem;}
+.page-hero{text-align:center;margin-bottom:2rem;}
+.ornament{display:flex;align-items:center;justify-content:center;gap:.8rem;margin-bottom:.5rem;}
+.orn-l{height:1px;width:50px;background:linear-gradient(90deg,transparent,#C8940A);}
+.orn-r{height:1px;width:50px;background:linear-gradient(90deg,#C8940A,transparent);}
+.orn-s{color:#E8660A;}
+.page-date{font-size:.88rem;color:#C8940A;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.5rem;}
+
+/* RASHI SELECTOR GRID */
+.rashi-selector{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-bottom:2.5rem;}
+.rs-card{background:#FFFDF8;border:1.5px solid #F0DFB0;border-radius:10px;padding:.75rem .65rem;text-align:center;cursor:pointer;flex:1;min-width:90px;max-width:122px;transition:all .22s;}
+.rs-card:hover{border-color:#E8660A;transform:translateY(-2px);box-shadow:0 5px 15px rgba(232,102,10,.12);}
+.rs-card.on{border-color:#C8940A;background:rgba(232,102,10,.05);transform:translateY(-2px);box-shadow:0 5px 15px rgba(200,148,10,.2);}
+.rs-sym{font-size:1.7rem;display:block;margin-bottom:.2rem;}
+.rs-en{font-size:.82rem;color:#4A0C0C;font-weight:600;}
+.rs-hi{font-family:‘Noto Sans Devanagari’,sans-serif;font-size:.72rem;color:#6B3A20;}
+.rs-dt{font-size:.62rem;color:rgba(74,32,16,.45);margin-top:.12rem;}
+
+/* PERIOD TABS */
+.period-bar{display:flex;gap:.5rem;justify-content:center;margin-bottom:1.5rem;flex-wrap:wrap;}
+.p-tab{background:rgba(200,148,10,.08);border:1.5px solid rgba(200,148,10,.25);color:#6B3A20;padding:.45rem 1.1rem;border-radius:20px;cursor:pointer;font-size:.9rem;transition:all .2s;}
+.p-tab.on{background:linear-gradient(135deg,#E8660A,#C8940A);border-color:transparent;color:white;font-weight:600;}
+.p-tab:hover:not(.on){background:rgba(200,148,10,.18);}
+
+/* READING PANEL */
+.reading-wrap{display:none;}
+.reading-wrap.show{display:block;animation:fadeup .45s ease;}
+@keyframes fadeup{from{opacity:0;transform:translateY(15px);}to{opacity:1;transform:translateY(0);}}
+
+.reading-hero{background:linear-gradient(135deg,#2A0505,#1A0303);border-radius:14px;padding:2rem 1.8rem;margin-bottom:1.5rem;border:1px solid rgba(200,148,10,.4);display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;}
+.rh-sym{font-size:4rem;line-height:1;}
+.rh-info{}
+.rh-name{font-family:‘Yatra One’,serif;color:#FFD740;font-size:2rem;margin-bottom:.2rem;}
+.rh-meta{color:rgba(254,246,228,.5);font-size:.9rem;margin-bottom:.4rem;}
+.rh-stars{color:#FFD740;font-size:1rem;}
+.period-badge{display:inline-block;background:rgba(200,148,10,.2);border:1px solid rgba(200,148,10,.35);border-radius:20px;padding:.2rem .8rem;font-size:.75rem;color:#E8B000;letter-spacing:.8px;text-transform:uppercase;margin-left:.5rem;}
+
+/* CATEGORY CARDS */
+.cat-grid{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;}
+.cat-card{flex:1;min-width:min(200px,100%);background:#FFFDF8;border:1.5px solid #F0DFB0;border-radius:11px;padding:1.1rem;box-shadow:0 3px 12px rgba(30,8,8,.07);}
+.cat-card.featured{border-color:#C8940A;background:linear-gradient(145deg,#FFFDF8,#FFF8EE);}
+.cat-title{color:#C8350A;font-size:.78rem;text-transform:uppercase;letter-spacing:.8px;margin-bottom:.3rem;font-weight:700;}
+.cat-stars{color:#FFD740;font-size:.85rem;margin-bottom:.35rem;}
+.cat-text{font-size:.92rem;color:#2A0808;line-height:1.7;}
+
+/* LUCKY STRIP */
+.lucky-strip{background:#2A0505;border-radius:11px;padding:1.1rem 1.3rem;margin-bottom:1.5rem;display:flex;flex-wrap:wrap;gap:1rem;align-items:center;}
+.lucky-strip h4{font-family:‘Yatra One’,serif;color:#FFD740;font-size:1rem;flex:100%;margin-bottom:.3rem;}
+.lucky-item{display:flex;align-items:center;gap:.5rem;flex:1;min-width:130px;}
+.lucky-icon{font-size:1.1rem;}
+.lucky-lbl{font-size:.7rem;color:rgba(254,246,228,.45);text-transform:uppercase;letter-spacing:.7px;display:block;}
+.lucky-val{font-size:.92rem;color:#FFD740;display:block;font-weight:600;}
+
+/* VEDIC TIP */
+.vedic-tip{background:linear-gradient(135deg,rgba(200,148,10,.08),rgba(232,102,10,.05));border:1.5px solid rgba(200,148,10,.25);border-radius:11px;padding:1.1rem 1.3rem;margin-bottom:1.5rem;}
+.vedic-tip h4{font-family:‘Yatra One’,serif;color:#4A0C0C;margin-bottom:.4rem;}
+.vedic-tip p{font-size:.92rem;color:#4A2010;line-height:1.7;}
+
+/* ALL-RASHIS OVERVIEW (when none selected) */
+.overview-grid{display:flex;flex-wrap:wrap;gap:1rem;}
+.ov-card{flex:1;min-width:min(220px,100%);background:#FFFDF8;border:1.5px solid #F0DFB0;border-radius:11px;padding:1rem;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(30,8,8,.05);}
+.ov-card:hover{border-color:#C8940A;transform:translateY(-2px);box-shadow:0 6px 18px rgba(200,148,10,.15);}
+.ov-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem;}
+.ov-sym{font-size:1.8rem;line-height:1;}
+.ov-name{font-family:‘Yatra One’,serif;color:#4A0C0C;font-size:1.05rem;}
+.ov-hi{font-family:‘Noto Sans Devanagari’,sans-serif;font-size:.8rem;color:#6B3A20;}
+.ov-stars{color:#FFD740;font-size:.78rem;margin-bottom:.35rem;}
+.ov-preview{font-size:.85rem;color:#4A2010;line-height:1.6;}
+
+/* FOOTER */
+footer{background:#1A0303;border-top:2px solid #C8940A;padding:1.5rem;text-align:center;color:rgba(254,246,228,.4);font-size:.82rem;margin-top:1rem;}
+footer a{color:#C8940A;}
+</style>
+
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">🔮 Kundli<span>Checking</span>.com</a>
+  <ul class="nav-links">
+    <li><a href="index.html#kundli" class="hide-mob">Free Kundli</a></li>
+    <li><a href="kundli-matching.html" class="hide-mob">💑 Milan</a></li>
+    <li><a href="horoscope.html" class="active">📿 Horoscope</a></li>
+    <li><a href="index.html" class="cta">Home ✦</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-hero">
+    <div class="ornament"><div class="orn-l"></div><span class="orn-s">✦</span><div class="orn-r"></div></div>
+    <div class="page-date" id="pageDate"></div>
+    <h1 id="mainH1">Daily Horoscope — All 12 Rashis</h1>
+    <p style="font-style:italic;color:#6B3A20;margin-top:.3rem;" id="mainSub">Select your Rashi below for your personalised reading</p>
+  </div>
+
+  <!-- Rashi selector -->
+
+  <div class="rashi-selector" id="rashiSelector"></div>
+
+  <!-- Period tabs -->
+
+  <div class="period-bar" id="periodBar">
+    <button class="p-tab on" data-p="daily" onclick="setPeriod('daily')">📅 Today</button>
+    <button class="p-tab" data-p="weekly" onclick="setPeriod('weekly')">📆 This Week</button>
+    <button class="p-tab" data-p="monthly" onclick="setPeriod('monthly')">🗓️ This Month</button>
+  </div>
+
+  <!-- Reading panel -->
+
+  <div class="reading-wrap" id="readingWrap">
+    <div class="reading-hero" id="readingHero"></div>
+    <div class="cat-grid" id="catGrid"></div>
+    <div class="lucky-strip" id="luckyStrip"></div>
+    <div class="vedic-tip" id="vedicTip"></div>
+  </div>
+
+  <!-- Overview (default) -->
+
+  <div class="overview-grid" id="overviewGrid"></div>
+</div>
+
+<footer>
+  © <span id="yr"></span> KundliChecking.com ·
+  <a href="index.html">Home</a> ·
+  <a href="kundli-matching.html">Kundli Matching</a> ·
+  <a href="index.html#panchang">Panchang</a> ·
+  Made with ❤️ in India 🇮🇳
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ── DATE DISPLAY ── */
+var today = new Date();
+var DAYS  = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+var MONTHS= ['January','February','March','April','May','June','July','August','September','October','November','December'];
+document.getElementById('pageDate').textContent =
+  DAYS[today.getDay()] + ', ' + today.getDate() + ' ' + MONTHS[today.getMonth()] + ' ' + today.getFullYear();
+
+/* ── RASHIS ── */
+var RASHIS = [
+  {id:0,  hi:'मेष',     en:'Aries',       sym:'♈', dates:'Mar 21–Apr 19', lord:'Mars',    el:'Fire',  gem:'Ruby',         color:'Red',         dir:'East'},
+  {id:1,  hi:'वृष',     en:'Taurus',      sym:'♉', dates:'Apr 20–May 20', lord:'Venus',   el:'Earth', gem:'Diamond',      color:'Green',       dir:'South'},
+  {id:2,  hi:'मिथुन',   en:'Gemini',      sym:'♊', dates:'May 21–Jun 20', lord:'Mercury', el:'Air',   gem:'Emerald',      color:'Yellow',      dir:'West'},
+  {id:3,  hi:'कर्क',    en:'Cancer',      sym:'♋', dates:'Jun 21–Jul 22', lord:'Moon',    el:'Water', gem:'Pearl',        color:'White',       dir:'North'},
+  {id:4,  hi:'सिंह',    en:'Leo',         sym:'♌', dates:'Jul 23–Aug 22', lord:'Sun',     el:'Fire',  gem:'Ruby',         color:'Gold',        dir:'East'},
+  {id:5,  hi:'कन्या',   en:'Virgo',       sym:'♍', dates:'Aug 23–Sep 22', lord:'Mercury', el:'Earth', gem:'Emerald',      color:'Navy Blue',   dir:'South'},
+  {id:6,  hi:'तुला',    en:'Libra',       sym:'♎', dates:'Sep 23–Oct 22', lord:'Venus',   el:'Air',   gem:'Diamond',      color:'White',       dir:'West'},
+  {id:7,  hi:'वृश्चिक', en:'Scorpio',     sym:'♏', dates:'Oct 23–Nov 21', lord:'Mars',    el:'Water', gem:'Red Coral',    color:'Crimson',     dir:'North'},
+  {id:8,  hi:'धनु',     en:'Sagittarius', sym:'♐', dates:'Nov 22–Dec 21', lord:'Jupiter', el:'Fire',  gem:'Yellow Sapph', color:'Saffron',     dir:'North-East'},
+  {id:9,  hi:'मकर',     en:'Capricorn',   sym:'♑', dates:'Dec 22–Jan 19', lord:'Saturn',  el:'Earth', gem:'Blue Sapph',   color:'Black',       dir:'South-West'},
+  {id:10, hi:'कुम्भ',   en:'Aquarius',    sym:'♒', dates:'Jan 20–Feb 18', lord:'Saturn',  el:'Air',   gem:'Blue Sapph',   color:'Blue',        dir:'West'},
+  {id:11, hi:'मीन',     en:'Pisces',      sym:'♓', dates:'Feb 19–Mar 20', lord:'Jupiter', el:'Water', gem:'Yellow Sapph', color:'Sea Green',   dir:'North-East'}
+];
+
+/* ── TEXT POOLS (daily / weekly / monthly) ── */
+var TEXTS = {
+  daily: {
+    love:[
+      'Venus blesses your chart today — reach out to someone you care about.',
+      'A moment of honesty deepens your most important bond significantly.',
+      'Small gestures carry enormous weight in love today — don\'t underestimate them.',
+      'New romantic energy surrounds you; stay open to unexpected connections.',
+      'Your warmth and charm are at their natural peak — let them shine freely.',
+      'Resolve a lingering misunderstanding today; the stars support reconciliation.',
+      'Your partner needs your presence more than your words today — just be there.',
+      'An unexpected message brings warmth and puts a smile on your face.'
+    ],
+    career:[
+      'Your instincts at work are unusually sharp — trust them on key decisions today.',
+      'Start the task you\'ve been postponing; it will flow more easily than expected.',
+      'A colleague\'s input, combined with your own, creates something truly valuable.',
+      'Recognition for recent efforts may arrive quietly today — stay alert.',
+      'Tackle the most challenging task first; your energy is strongest in the morning.',
+      'A brief conversation opens a valuable professional door you didn\'t know existed.',
+      'Avoid workplace arguments; focused, calm effort wins far more today.',
+      'Financial discipline today creates meaningful freedom in the coming weeks.'
+    ],
+    health:[
+      'Drink significantly more water than usual — your body is asking for it clearly.',
+      'A 20-minute walk in fresh air will transform your mood and energy levels.',
+      'Avoid heavy or oily food tonight; keep your dinner light and sattvic.',
+      'Your mind is overactive — five minutes of slow, deep breathing will centre you.',
+      'Sleep at a consistent time tonight; your body\'s rhythm needs this reset.',
+      'Gentle morning stretching prevents the stiffness that accumulates through the day.',
+      'Your physical energy is naturally high today — use it productively before evening.',
+      'Rest is as important as action. Give yourself genuine permission to pause.'
+    ],
+    overall:[
+      'Today carries quiet but powerful momentum — stay intentional in everything.',
+      'A small decision today triggers a positive chain of events over coming days.',
+      'Challenges appearing now are shorter-lived than they feel — hold your ground.',
+      'Your ruling planet is well-placed today — act with quiet confidence.',
+      'The universe is testing your patience very briefly before rewarding you.',
+      'Stay grounded and present; the best opportunity today arrives without announcement.',
+      'This is a day for completing, not beginning — finish what you started this week.',
+      'Your intuition today is exceptionally reliable — trust your first instinct.'
+    ]
+  },
+  weekly: {
+    love:[
+      'This week brings a gentle but meaningful turning point in your relationship.',
+      'Communication is the week\'s central theme — say what you\'ve been holding back.',
+      'If single, the latter half of this week brings the most interesting social energy.',
+      'Patience with your partner mid-week transforms tension into deeper understanding.',
+      'A gesture you\'ve been planning — this is the week to finally act on it.',
+      'Venus supports emotional honesty this week; vulnerability becomes your strength.',
+      'Shared experiences this week build bonds that will sustain you for months ahead.',
+      'An old friendship deepens unexpectedly into something more meaningful this week.'
+    ],
+    career:[
+      'A project reaches its critical milestone this week — keep your focus through Thursday.',
+      'New responsibilities may be offered; evaluate their long-term potential carefully.',
+      'Collaboration with a specific colleague leads to a breakthrough by the weekend.',
+      'This week is excellent for presenting ideas, pitching plans, and being visible.',
+      'Peers are observing your consistency this week — let your best work speak.',
+      'A professional relationship you\'ve been investing in begins to pay real dividends.',
+      'Avoid major financial commitments before the week ends — the timing will improve.',
+      'Creative problem-solving is your greatest professional asset this week.'
+    ],
+    health:[
+      'This week calls for genuine rest and restoration — treat sleep as a priority.',
+      'Introduce one meaningful healthy habit this week and it will compound beautifully.',
+      'Mid-week brings higher stress levels — plan lighter activities on Wednesday.',
+      'Outdoor movement, even short daily walks, significantly improves this week\'s energy.',
+      'Avoid skipping meals this week; consistent eating supports your mental clarity.',
+      'Your body is recovering from recent strain — give it the patience it needs.',
+      'This week is ideal for beginning a routine you\'ve been putting off for months.',
+      'Reduce screen time in the evenings this week — your sleep quality will improve dramatically.'
+    ],
+    overall:[
+      'This week builds slowly but finishes on a genuinely high note — trust the pace.',
+      'Clarity arrives mid-week after some early confusion — don\'t rush decisions before then.',
+      'Relationships and work both need your attention; balance them consciously this week.',
+      'Your patience this week is a direct investment in next week\'s tangible rewards.',
+      'Avoid overcommitting early in the week; save your energy for what arrives later.',
+      'This week delivers an important lesson in the area of life you\'ve been avoiding.',
+      'By the weekend you\'ll feel a clear and earned sense of progress and direction.',
+      'An unexpected development mid-week changes your perspective in a positive way.'
+    ]
+  },
+  monthly: {
+    love:[
+      'This month, a relationship deepens to a genuinely more meaningful level.',
+      'For singles, the middle weeks bring someone who challenges you in the best possible way.',
+      'Old emotional patterns surface for review — what you heal now frees you permanently.',
+      'Love requires clear action this month, not just quiet intention — make it visible.',
+      'A relationship milestone — a conversation, commitment or journey — is approaching.',
+      'This month you learn the crucial difference between what you want and what you need.',
+      'Forgiveness, whether offered or received, permanently transforms a bond this month.',
+      'A new relationship that begins this month has unusually strong long-term potential.'
+    ],
+    career:[
+      'This month marks a genuine shift in your career trajectory — a new path becomes clear.',
+      'Your skills catch the attention of someone important in the first two weeks — be ready.',
+      'A long-term project finally delivers meaningful, visible results this month.',
+      'Financial decisions made now will create ripple effects for the next six months.',
+      'This month invites you to step outside your professional comfort zone — the time is right.',
+      'Networking and consistent visibility bring the greatest results this month.',
+      'A door you thought was permanently closed reopens under completely different circumstances.',
+      'Leadership opportunities emerge this month — step forward with quiet confidence.'
+    ],
+    health:[
+      'This month requires a genuine and sustained commitment to physical health.',
+      'A consistent sleep schedule this month transforms your energy for weeks to come.',
+      'Reduce processed food and increase whole foods — the results will become visible quickly.',
+      'Mental health deserves as much care as physical health this month — check in with yourself.',
+      'A health habit started this month has an unusually high chance of becoming permanent.',
+      'Stress management is the central health theme this month — identify your triggers early.',
+      'Your body responds exceptionally well to exercise this month — begin slowly and build.',
+      'A long-standing health concern begins to improve meaningfully this month.'
+    ],
+    overall:[
+      'This month marks the beginning of a meaningful new chapter across all areas of life.',
+      'Growth, transformation and increasing clarity run as themes through every area this month.',
+      'What you build with patience and care this month becomes your next season\'s foundation.',
+      'A recurring challenge finally resolves this month — the cycle is genuinely ending.',
+      'Your intuition is unusually accurate this month — trust inner guidance over outside noise.',
+      'This month asks you to release something no longer serving you — do so with grace.',
+      'By month\'s end you\'ll feel a profound and earned shift in how you see yourself.',
+      'An opportunity that seemed too good appears this month — it is genuine, not a mirage.'
+    ]
+  }
+};
+
+var LUCKY_NUMS = [1,2,3,4,5,6,7,8,9,11,18,21,27,33,108];
+var PERIOD_SEED = {daily:1, weekly:1000, monthly:10000};
+
+function rnd(s){return Math.abs(Math.sin(s*9301+49297)*233280)%1;}
+function pick(arr,s){return arr[Math.floor(rnd(s)*arr.length)];}
+function stars(n){return '★'.repeat(n)+'☆'.repeat(5-n);}
+function rating(rashiId, cat, period){
+  var s = rashiId*100 + today.getDate() + PERIOD_SEED[period] + cat.length;
+  return 2 + Math.floor(rnd(s)*4);
+}
+function getReading(rashiId, cat, period){
+  var s = rashiId*77 + today.getDate()*13 + today.getMonth()*7 + PERIOD_SEED[period] + cat.charCodeAt(0);
+  return pick(TEXTS[period][cat], s);
+}
+function getLucky(rashiId, period) {
+  var s = rashiId*31 + today.getDate() + today.getMonth()*17 + PERIOD_SEED[period];
+  var r = RASHIS[rashiId];
+  return {
+    color:   r.color,
+    number:  pick(LUCKY_NUMS, s*13),
+    gem:     r.gem,
+    dir:     r.dir,
+    time:    ['6:00–8:00 AM','8:00–10:00 AM','10:00–12:00 PM','12:00–2:00 PM','4:00–6:00 PM','6:00–8:00 PM'][Math.floor(rnd(s*23)*6)]
+  };
+}
+
+/* ── STATE ── */
+var curRashi  = null;
+var curPeriod = 'daily';
+
+/* ── URL ROUTING ── */
+function getRashiFromUrl() {
+  var params = new URLSearchParams(window.location.search);
+  var r = (params.get('r') || '').toLowerCase();
+  for (var i=0; i<RASHIS.length; i++) {
+    if (RASHIS[i].en.toLowerCase() === r) return i;
+  }
+  return null;
+}
+
+function setUrl(rashiEn, period) {
+  var url = 'horoscope.html?r=' + rashiEn.toLowerCase() + '&p=' + period;
+  history.pushState(null, null, url);
+  // Update SEO meta dynamically
+  var periodLabel = {daily:'Today',weekly:'This Week',monthly:'This Month'}[period];
+  document.getElementById('pageTitle').textContent =
+    rashiEn + ' Horoscope ' + periodLabel + ' | KundliChecking.com';
+  document.getElementById('pageDesc').setAttribute('content',
+    'Free ' + rashiEn + ' horoscope for ' + periodLabel.toLowerCase() + '. Love, career and health predictions for ' + rashiEn + '. Lucky color, number and Vedic tip.');
+  document.getElementById('pageCanonical').setAttribute('href',
+    'https://kundlichecking.com/horoscope.html?r=' + rashiEn.toLowerCase());
+  document.getElementById('mainH1').textContent = rashiEn + ' Horoscope — ' + periodLabel;
+}
+
+/* ── BUILD SELECTOR ── */
+function buildSelector() {
+  document.getElementById('rashiSelector').innerHTML = RASHIS.map(function(r) {
+    return '<div class="rs-card" id="rs_'+r.id+'" onclick="pickRashi('+r.id+')" tabindex="0" role="button" aria-label="'+r.en+' horoscope">' +
+      '<span class="rs-sym">'+r.sym+'</span>' +
+      '<div class="rs-en">'+r.en+'</div>' +
+      '<div class="rs-hi">'+r.hi+'</div>' +
+      '<div class="rs-dt">'+r.dates+'</div>' +
+    '</div>';
+  }).join('');
+  RASHIS.forEach(function(r){
+    document.getElementById('rs_'+r.id).addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();pickRashi(r.id);}
+    });
+  });
+}
+
+/* ── OVERVIEW ── */
+function buildOverview() {
+  document.getElementById('overviewGrid').innerHTML = RASHIS.map(function(r) {
+    var ov = rating(r.id, 'overall', 'daily');
+    return '<div class="ov-card" onclick="pickRashi('+r.id+')">' +
+      '<div class="ov-head"><span class="ov-sym">'+r.sym+'</span><div><div class="ov-name">'+r.en+'</div><div class="ov-hi">'+r.hi+'</div></div></div>' +
+      '<div class="ov-stars">'+stars(ov)+' Overall</div>' +
+      '<div class="ov-preview">'+getReading(r.id,'overall','daily').substring(0,100)+'…</div>' +
+    '</div>';
+  }).join('');
+}
+
+/* ── PICK RASHI ── */
+window.pickRashi = function(id) {
+  // Update selector highlight
+  document.querySelectorAll('.rs-card').forEach(function(c){c.classList.remove('on');});
+  document.getElementById('rs_'+id).classList.add('on');
+  curRashi = id;
+  setUrl(RASHIS[id].en, curPeriod);
+  renderReading(id, curPeriod);
+  document.getElementById('overviewGrid').style.display = 'none';
+  document.getElementById('mainSub').style.display = 'none';
+};
+
+/* ── PERIOD SWITCH ── */
+window.setPeriod = function(p) {
+  curPeriod = p;
+  document.querySelectorAll('.p-tab').forEach(function(t){t.classList.remove('on');});
+  document.querySelector('.p-tab[data-p="'+p+'"]').classList.add('on');
+  if (curRashi !== null) {
+    setUrl(RASHIS[curRashi].en, p);
+    renderReading(curRashi, p);
+  }
+};
+
+/* ── RENDER READING ── */
+function renderReading(id, period) {
+  var r = RASHIS[id];
+  var ov = rating(id,'overall',period);
+  var lv = rating(id,'love',period);
+  var cv = rating(id,'career',period);
+  var hv = rating(id,'health',period);
+  var lucky = getLucky(id, period);
+  var pLabel = {daily:"Today's Reading",weekly:"This Week's Reading",monthly:"This Month's Reading"}[period];
+
+  // Hero
+  document.getElementById('readingHero').innerHTML =
+    '<span class="rh-sym">'+r.sym+'</span>' +
+    '<div class="rh-info">' +
+      '<div class="rh-name">'+r.en+' <span class="rh-hi" style="font-family:\'Noto Sans Devanagari\',sans-serif;font-size:1.2rem;color:#E8B000">'+r.hi+'</span></div>' +
+      '<div class="rh-meta">'+r.dates+' &nbsp;|&nbsp; Lord: <strong style="color:#FFD740">'+r.lord+'</strong> &nbsp;|&nbsp; '+r.el+' Sign</div>' +
+      '<div class="rh-stars">'+stars(ov)+' Overall <span class="period-badge">'+pLabel+'</span></div>' +
+    '</div>';
+
+  // Category cards
+  var cats = [
+    {key:'love',    icon:'💕', title:'Love & Relationships', stars:lv, featured:false},
+    {key:'career',  icon:'💼', title:'Career & Finance',     stars:cv, featured:false},
+    {key:'health',  icon:'🌿', title:'Health & Wellness',    stars:hv, featured:false},
+    {key:'overall', icon:'🌟', title:'Overall Guidance',     stars:ov, featured:true}
+  ];
+  document.getElementById('catGrid').innerHTML = cats.map(function(c) {
+    return '<div class="cat-card'+(c.featured?' featured':'')+'">'+
+      '<div class="cat-title">'+c.icon+' '+c.title+'</div>'+
+      '<div class="cat-stars">'+stars(c.stars)+'</div>'+
+      '<div class="cat-text">'+getReading(id, c.key, period)+'</div>'+
+    '</div>';
+  }).join('');
+
+  // Lucky strip
+  document.getElementById('luckyStrip').innerHTML =
+    '<h4>🍀 Lucky for '+{daily:'Today',weekly:'This Week',monthly:'This Month'}[period]+'</h4>' +
+    [
+      {icon:'🎨',lbl:'Lucky Colour',val:lucky.color},
+      {icon:'🔢',lbl:'Lucky Number',val:lucky.number},
+      {icon:'💎',lbl:'Lucky Gemstone',val:lucky.gem},
+      {icon:'🧭',lbl:'Lucky Direction',val:lucky.dir},
+      {icon:'⏰',lbl:'Auspicious Time',val:lucky.time}
+    ].map(function(l){
+      return '<div class="lucky-item"><span class="lucky-icon">'+l.icon+'</span><div><span class="lucky-lbl">'+l.lbl+'</span><span class="lucky-val">'+l.val+'</span></div></div>';
+    }).join('');
+
+  // Vedic tip
+  var tips = {
+    daily:'Your planetary lord <strong>'+r.lord+'</strong> is active today. Light a diya and chant the '+r.lord+' mantra 21 times at sunrise for clarity, protection and positive energy throughout the day.',
+    weekly:'This week, align your actions with <strong>'+r.lord+'</strong>\'s energy. Perform '+r.lord+' Puja on the auspicious day of the week to strengthen all positive planetary influences for seven days.',
+    monthly:'This month, deepen your relationship with <strong>'+r.lord+'</strong>. Daily mantra chanting — 108 repetitions each morning — compounds into profound blessings over the full lunar cycle.'
+  };
+  document.getElementById('vedicTip').innerHTML =
+    '<h4>📜 Vedic Tip — '+r.en+'</h4><p>'+tips[period]+'</p>';
+
+  document.getElementById('readingWrap').className = 'reading-wrap show';
+  setTimeout(function(){
+    document.getElementById('readingWrap').scrollIntoView({behavior:'smooth',block:'nearest'});
+  }, 80);
+}
+
+/* ── INIT ── */
+buildSelector();
+buildOverview();
+// Check URL for direct rashi link
+var urlRashi = getRashiFromUrl();
+var params2  = new URLSearchParams(window.location.search);
+var urlP     = params2.get('p');
+if (urlP && ['daily','weekly','monthly'].indexOf(urlP) > -1) {
+  curPeriod = urlP;
+  document.querySelectorAll('.p-tab').forEach(function(t){t.classList.remove('on');});
+  var tab = document.querySelector('.p-tab[data-p="'+curPeriod+'"]');
+  if (tab) tab.classList.add('on');
+}
+if (urlRashi !== null) {
+  pickRashi(urlRashi);
+}
+</script>
+
+</body>
+</html>
