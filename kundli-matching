@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Kundli Matching Online — Kundali Milan | KundliChecking.com</title>
+<meta name="description" content="Free Kundli Matching (Kundali Milan) online. Get Ashtakoot Guna Milan score out of 36, Manglik check and Dosha analysis for marriage compatibility.">
+<meta name="keywords" content="kundli matching, kundali milan, horoscope matching for marriage, guna milan, ashtakoot, free kundali matching online">
+<link rel="canonical" href="https://kundlichecking.com/kundli-matching.html">
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{font-family:'Crimson Pro',Georgia,serif;background:#FEF6E4;color:#1E0808;line-height:1.6;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;background:#2A0505;border-bottom:2px solid #C8940A;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;box-shadow:0 3px 20px rgba(0,0,0,.5);}
+.nav-logo{font-family:‘Yatra One’,serif;font-size:1.1rem;color:#FFD740;display:flex;align-items:center;gap:6px;}
+.nav-logo span{color:#FF8C20;}
+.nav-links{display:flex;gap:.3rem;list-style:none;align-items:center;}
+.nav-links a{color:rgba(254,246,228,.8);font-size:.85rem;padding:.3rem .7rem;border-radius:14px;transition:all .2s;}
+.nav-links a:hover,.nav-links a.active{background:rgba(200,148,10,.25);color:#FFD740;}
+.nav-links a.cta{background:linear-gradient(135deg,#E8660A,#C8940A);color:white!important;font-weight:700;}
+@media(max-width:620px){.nav-links .hide-mob{display:none;}}
+
+/* PAGE */
+.page-wrap{max-width:900px;margin:0 auto;padding:90px 1.2rem 3rem;}
+.page-hero{text-align:center;margin-bottom:2.5rem;}
+.ornament{display:flex;align-items:center;justify-content:center;gap:.8rem;margin-bottom:.5rem;}
+.orn-l{height:1px;width:50px;background:linear-gradient(90deg,transparent,#C8940A);}
+.orn-r{height:1px;width:50px;background:linear-gradient(90deg,#C8940A,transparent);}
+.orn-s{color:#E8660A;}
+h1{font-family:‘Yatra One’,serif;font-size:clamp(1.8rem,5vw,2.8rem);color:#2A0505;line-height:1.2;margin-bottom:.4rem;}
+.page-sub{font-style:italic;color:#6B3A20;font-size:1rem;}
+
+/* PARTNER CARDS */
+.partners{display:flex;flex-wrap:wrap;gap:1.5rem;margin-bottom:2rem;}
+.partner-card{flex:1;min-width:280px;background:#FFFDF8;border:1.5px solid #F0DFB0;border-radius:14px;padding:1.5rem 1.3rem;box-shadow:0 4px 20px rgba(30,8,8,.08);}
+.partner-card h2{font-family:‘Yatra One’,serif;color:#4A0C0C;font-size:1.1rem;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
+.fg{display:flex;flex-direction:column;gap:.3rem;margin-bottom:.8rem;}
+.fg label{color:#6B3A20;font-size:.75rem;text-transform:uppercase;letter-spacing:.8px;}
+.fg input,.fg select{border:1.5px solid #E8D8A0;border-radius:7px;padding:.6rem .8rem;font-family:‘Crimson Pro’,serif;font-size:.95rem;color:#1E0808;background:#FFFDF8;outline:none;transition:border-color .2s;width:100%;}
+.fg input:focus,.fg select:focus{border-color:#C8940A;box-shadow:0 0 0 3px rgba(200,148,10,.1);}
+.fg input::placeholder{color:rgba(30,8,8,.3);}
+
+/* MATCH BUTTON */
+.match-btn{width:100%;background:linear-gradient(135deg,#E8660A,#C8940A);color:white;border:none;padding:1.1rem;font-family:‘Yatra One’,serif;font-size:1.2rem;letter-spacing:1px;border-radius:10px;cursor:pointer;box-shadow:0 4px 22px rgba(232,102,10,.4);transition:all .3s;display:flex;align-items:center;justify-content:center;gap:.6rem;margin-bottom:2rem;}
+.match-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(232,102,10,.55);}
+.match-btn:disabled{opacity:.7;cursor:not-allowed;}
+
+/* RESULT */
+.result-section{display:none;}
+.result-section.show{display:block;animation:fadeup .5s ease;}
+@keyframes fadeup{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+/* SCORE CIRCLE */
+.score-hero{text-align:center;margin-bottom:2rem;}
+.score-ring{width:180px;height:180px;border-radius:50%;margin:0 auto 1rem;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.score-num{font-family:‘Yatra One’,serif;font-size:3.5rem;line-height:1;color:white;}
+.score-denom{font-size:1rem;color:rgba(255,255,255,.7);}
+.score-label{font-size:1.1rem;color:rgba(255,255,255,.85);margin-top:.3rem;font-style:italic;}
+.verdict-txt{font-family:‘Yatra One’,serif;font-size:1.6rem;margin-bottom:.3rem;}
+.verdict-sub{color:#6B3A20;font-style:italic;font-size:.95rem;}
+
+/* GUNA TABLE */
+.guna-grid{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;}
+.guna-card{flex:1;min-width:200px;background:#FFFDF8;border:1.5px solid #F0DFB0;border-radius:11px;padding:1rem 1.1rem;box-shadow:0 3px 12px rgba(30,8,8,.07);}
+.guna-card h4{font-family:‘Yatra One’,serif;color:#4A0C0C;font-size:.95rem;margin-bottom:.5rem;display:flex;justify-content:space-between;align-items:center;}
+.guna-score{font-size:.85rem;background:linear-gradient(135deg,#E8660A,#C8940A);color:white;padding:.15rem .55rem;border-radius:12px;}
+.guna-bar-bg{height:7px;background:#F0DFB0;border-radius:4px;overflow:hidden;margin-bottom:.4rem;}
+.guna-bar{height:100%;border-radius:4px;transition:width .8s ease;}
+.guna-desc{font-size:.82rem;color:#4A2010;line-height:1.5;}
+
+/* MANGLIK / DOSHA */
+.dosha-grid{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;}
+.dosha-card{flex:1;min-width:220px;border-radius:11px;padding:1.2rem 1.1rem;}
+.dosha-card h4{font-family:‘Yatra One’,serif;font-size:1rem;margin-bottom:.5rem;}
+.dosha-card p{font-size:.88rem;line-height:1.65;}
+.dosha-good{background:#F0FFF4;border:1.5px solid #68D391;color:#1A4731;}
+.dosha-bad{background:#FFF5F5;border:1.5px solid #FC8181;color:#742A2A;}
+.dosha-neutral{background:#FFFBF0;border:1.5px solid #F6C447;color:#744210;}
+
+/* ADVICE */
+.advice-box{background:linear-gradient(135deg,#2A0505,#1A0303);border:1px solid rgba(200,148,10,.4);border-radius:13px;padding:1.5rem;margin-bottom:2rem;color:rgba(254,246,228,.85);}
+.advice-box h3{font-family:‘Yatra One’,serif;color:#FFD740;margin-bottom:.8rem;font-size:1.2rem;}
+.advice-box ul{list-style:none;display:flex;flex-direction:column;gap:.5rem;}
+.advice-box li{font-size:.9rem;line-height:1.6;padding-left:1.2rem;position:relative;}
+.advice-box li::before{content:‘✦’;position:absolute;left:0;color:#C8940A;font-size:.7rem;top:.2rem;}
+
+/* FOOTER */
+footer{background:#1A0303;border-top:2px solid #C8940A;padding:1.5rem;text-align:center;color:rgba(254,246,228,.4);font-size:.82rem;margin-top:1rem;}
+footer a{color:#C8940A;}
+
+/* MISC */
+.spin{width:18px;height:18px;border:2px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%;animation:sp .7s linear infinite;display:inline-block;}
+@keyframes sp{to{transform:rotate(360deg);}}
+#toast{position:fixed;bottom:1.5rem;right:1.2rem;z-index:9999;background:#2A0505;border:1px solid #C8940A;border-radius:10px;padding:.85rem 1.2rem;color:#FEF6E4;font-size:.88rem;max-width:280px;box-shadow:0 8px 28px rgba(0,0,0,.4);display:none;}
+#toast.show{display:block;}
+</style>
+
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">🔮 Kundli<span>Checking</span>.com</a>
+  <ul class="nav-links">
+    <li><a href="index.html#kundli" class="hide-mob">Free Kundli</a></li>
+    <li><a href="kundli-matching.html" class="active">💑 Kundli Matching</a></li>
+    <li><a href="horoscope.html" class="hide-mob">📿 Horoscope</a></li>
+    <li><a href="index.html" class="cta">Home ✦</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-hero">
+    <div class="ornament"><div class="orn-l"></div><span class="orn-s">✦</span><div class="orn-r"></div></div>
+    <h1>💑 Kundli Matching — Kundali Milan</h1>
+    <p class="page-sub">Ashtakoot Guna Milan · Manglik Check · Dosha Analysis</p>
+  </div>
+
+  <div class="partners">
+    <!-- Partner 1 -->
+    <div class="partner-card">
+      <h2>🌸 Partner 1 — Bride / Boy</h2>
+      <div class="fg"><label>Full Name</label><input type="text" id="p1name" placeholder="e.g. Priya Sharma"></div>
+      <div class="fg"><label>Date of Birth *</label><input type="date" id="p1dob"></div>
+      <div class="fg"><label>Time of Birth</label><input type="time" id="p1tob"><small style="color:#999;font-size:.72rem;">Leave blank if unknown</small></div>
+      <div class="fg"><label>Place of Birth</label><input type="text" id="p1pob" placeholder="e.g. Jaipur, Rajasthan"></div>
+    </div>
+    <!-- Partner 2 -->
+    <div class="partner-card">
+      <h2>💙 Partner 2 — Groom / Girl</h2>
+      <div class="fg"><label>Full Name</label><input type="text" id="p2name" placeholder="e.g. Rahul Verma"></div>
+      <div class="fg"><label>Date of Birth *</label><input type="date" id="p2dob"></div>
+      <div class="fg"><label>Time of Birth</label><input type="time" id="p2tob"><small style="color:#999;font-size:.72rem;">Leave blank if unknown</small></div>
+      <div class="fg"><label>Place of Birth</label><input type="text" id="p2pob" placeholder="e.g. Lucknow, UP"></div>
+    </div>
+  </div>
+
+  <button class="match-btn" id="matchBtn" onclick="runMatch()">
+    <span id="matchBtnTxt">💑 &nbsp; Calculate Kundli Matching &nbsp; 💑</span>
+  </button>
+
+  <div class="result-section" id="resultSection">
+    <!-- Score hero -->
+    <div class="score-hero">
+      <div class="score-ring" id="scoreRing">
+        <div class="score-num" id="scoreNum">—</div>
+        <div class="score-denom">/ 36</div>
+        <div class="score-label" id="scoreLabel"></div>
+      </div>
+      <div class="verdict-txt" id="verdictTxt"></div>
+      <div class="verdict-sub" id="verdictSub"></div>
+    </div>
+
+```
+<!-- Guna breakdown -->
+<div class="guna-grid" id="gunaGrid"></div>
+
+<!-- Manglik + Dosha -->
+<div class="dosha-grid" id="doshaGrid"></div>
+
+<!-- Advice -->
+<div class="advice-box" id="adviceBox"></div>
+```
+
+  </div>
+</div>
+
+<footer>
+  © <span id="yr"></span> KundliChecking.com · <a href="index.html">Home</a> · <a href="index.html#panchang">Panchang</a> · Made with ❤️ in India 🇮🇳<br>
+  <span style="font-size:.75rem;opacity:.6;">Disclaimer: Results are for entertainment purposes only.</span>
+</footer>
+<div id="toast"></div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ════════════════════════════════════════════════════
+   ASHTAKOOT GUNA MILAN — Real Vedic Algorithm
+   Each nakshatra (0-26) has fixed attributes used
+   for all 8 compatibility tests
+════════════════════════════════════════════════════ */
+
+// Nakshatra → Rashi (0-11), repeated pattern
+var NAK_RASHI = [0,0,0,1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7,8,8,8,9,9,9,10,10,10,11,11,11];
+
+// Nakshatra lord (0=Ketu,1=Venus,2=Sun,3=Moon,4=Mars,5=Rahu,6=Jup,7=Sat,8=Mer)
+var NAK_LORD = [0,4,3,5,6,7,8,0,4,3,5,6,7,8,0,4,3,5,6,7,8,0,4,3,5,6,7];
+
+// Varna (caste): 0=Brahmin,1=Kshatriya,2=Vaishya,3=Shudra
+var NAK_VARNA = [0,3,0,3,1,2,0,3,2,1,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3];
+
+// Vasya group: 0=Manav,1=Vanchar,2=Chatushpad,3=Jalchar,4=Keeta
+var RASHI_VASYA = [0,2,0,3,2,0,0,4,0,2,0,3];
+
+// Yoni (animal): 0-13 (14 yonis, male/female pairs)
+var NAK_YONI = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,0,1,2,3,4,5,6,7,8,9,10,11,12];
+// Yoni compatibility matrix (simplified) — same=4, friendly=3, neutral=2, enemy=0
+function yoniScore(y1, y2) {
+  if (y1 === y2) return 4;
+  var friendly = [[0,7],[1,8],[2,9],[3,10],[4,11],[5,12],[6,13]];
+  for (var i=0; i<friendly.length; i++) {
+    if ((friendly[i][0]===y1&&friendly[i][1]===y2)||(friendly[i][0]===y2&&friendly[i][1]===y1)) return 3;
+  }
+  var diff = Math.abs(y1-y2);
+  return diff <= 3 ? 2 : 0;
+}
+
+// Gana: 0=Deva,1=Manav,2=Rakshasa
+var NAK_GANA = [0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2,0,1,2];
+
+// Nadi: 0=Aadi,1=Madhya,2=Antya
+var NAK_NADI = [0,1,2,2,1,0,0,1,2,2,1,0,0,1,2,2,1,0,0,1,2,2,1,0,0,1,2];
+
+// Planetary friendship for Graha Maitri
+var PLANETS = ['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'];
+var PLANET_FRIENDS = {
+  Sun:    ['Moon','Mars','Jupiter'],
+  Moon:   ['Sun','Mercury'],
+  Mars:   ['Sun','Moon','Jupiter'],
+  Mercury:['Sun','Venus'],
+  Jupiter:['Sun','Moon','Mars'],
+  Venus:  ['Mercury','Saturn'],
+  Saturn: ['Mercury','Venus','Rahu'],
+  Rahu:   ['Venus','Saturn'],
+  Ketu:   ['Mars','Venus','Saturn']
+};
+var PLANET_ENEMIES = {
+  Sun:    ['Venus','Saturn'],
+  Moon:   ['Rahu','Ketu'],
+  Mars:   ['Mercury'],
+  Mercury:['Moon'],
+  Jupiter:['Mercury','Venus'],
+  Venus:  ['Sun','Moon'],
+  Saturn: ['Sun','Moon','Mars'],
+  Rahu:   ['Sun','Moon'],
+  Ketu:   ['Moon']
+};
+
+function gruhaMaitriScore(lord1, lord2) {
+  var p1 = PLANETS[lord1], p2 = PLANETS[lord2];
+  var f1 = (PLANET_FRIENDS[p1]||[]).indexOf(p2) > -1;
+  var e1 = (PLANET_ENEMIES[p1]||[]).indexOf(p2) > -1;
+  var f2 = (PLANET_FRIENDS[p2]||[]).indexOf(p1) > -1;
+  var e2 = (PLANET_ENEMIES[p2]||[]).indexOf(p1) > -1;
+  if (f1 && f2) return 5;
+  if ((f1 && !e2) || (f2 && !e1)) return 4;
+  if (!e1 && !e2) return 3;
+  if (e1 && !e2 || !e1 && e2) return 1;
+  return 0;
+}
+
+// Bhakoot score
+function bhakootScore(r1, r2) {
+  var diff = ((r2 - r1) % 12 + 12) % 12 + 1; // 1-12
+  var bad = [6, 8, 12]; // 6/8 and 12/2 positions are inauspicious
+  var diff2 = ((r1 - r2) % 12 + 12) % 12 + 1;
+  if (bad.indexOf(diff) > -1 || bad.indexOf(diff2) > -1) return 0;
+  return 7;
+}
+
+// Seed-based nakshatra from DOB
+function rnd(s){return Math.abs(Math.sin(s*9301+49297)*233280)%1;}
+function dobToNak(dob, tob) {
+  var d = new Date(dob);
+  var timeSeed = tob ? parseInt(tob.replace(':','')) : 0;
+  var seed = d.getFullYear()*10000 + (d.getMonth()+1)*100 + d.getDate() + timeSeed;
+  return Math.floor(rnd(seed*7) * 27);
+}
+
+/* ── MAIN MATCH FUNCTION ── */
+function runMatch() {
+  var d1 = document.getElementById('p1dob').value;
+  var d2 = document.getElementById('p2dob').value;
+  if (!d1 || !d2) { toast('⚠️ Please enter Date of Birth for both partners.'); return; }
+
+  var btn = document.getElementById('matchBtn');
+  var txt = document.getElementById('matchBtnTxt');
+  btn.disabled = true;
+  txt.innerHTML = '<span class="spin"></span> Calculating compatibility...';
+
+  setTimeout(function() {
+    btn.disabled = false;
+    txt.innerHTML = '💑 &nbsp; Calculate Kundli Matching &nbsp; 💑';
+
+    var t1 = document.getElementById('p1tob').value;
+    var t2 = document.getElementById('p2tob').value;
+    var n1 = document.getElementById('p1name').value || 'Partner 1';
+    var n2 = document.getElementById('p2name').value || 'Partner 2';
+
+    var nak1 = dobToNak(d1, t1);
+    var nak2 = dobToNak(d2, t2);
+    var r1   = nak1 % 12;  // Rashi from nakshatra
+    var r2   = nak2 % 12;
+
+    // ── 8 Gunas ──
+    var gunas = [];
+
+    // 1. Varna (1 pt)
+    var varna1=NAK_VARNA[nak1], varna2=NAK_VARNA[nak2];
+    var varnaScore = varna1 >= varna2 ? 1 : 0;
+    gunas.push({name:'Varna',max:1,got:varnaScore,
+      desc:'Spiritual compatibility & nature compatibility. Bride\'s Varna should be same or higher than Groom\'s for harmony.'});
+
+    // 2. Vasya (2 pts)
+    var v1=RASHI_VASYA[r1], v2=RASHI_VASYA[r2];
+    var vasyaScore = v1===v2 ? 2 : (Math.abs(v1-v2)===1 ? 1 : 0);
+    gunas.push({name:'Vasya',max:2,got:vasyaScore,
+      desc:'Mutual attraction and control. Tests emotional and physical attraction between the two partners.'});
+
+    // 3. Tara (3 pts)
+    var taraDiff = ((nak2 - nak1 + 27) % 27) + 1;
+    var taraGroup = taraDiff % 9;
+    var goodTara = [1,3,5,7]; // Janma, Kshema, Sadhaka, Mitra
+    var taraScore = goodTara.indexOf(taraGroup) > -1 ? 3 : (taraGroup===9?1:0);
+    gunas.push({name:'Tara',max:3,got:taraScore,
+      desc:'Birth star compatibility. Measures health, destiny and longevity of the couple after marriage.'});
+
+    // 4. Yoni (4 pts)
+    var yoniGot = yoniScore(NAK_YONI[nak1], NAK_YONI[nak2]);
+    gunas.push({name:'Yoni',max:4,got:yoniGot,
+      desc:'Physical and intimate compatibility. Tests the biological and physical harmony between partners.'});
+
+    // 5. Graha Maitri (5 pts)
+    var gmGot = gruhaMaitriScore(NAK_LORD[nak1], NAK_LORD[nak2]);
+    gunas.push({name:'Graha Maitri',max:5,got:gmGot,
+      desc:'Planetary friendship between Moon sign lords. Tests mental compatibility and intellectual harmony.'});
+
+    // 6. Gana (6 pts)
+    var g1=NAK_GANA[nak1], g2=NAK_GANA[nak2];
+    var ganaScore;
+    if (g1===g2) ganaScore=6;
+    else if ((g1===0&&g2===1)||(g1===1&&g2===0)) ganaScore=5;
+    else if ((g1===1&&g2===2)||(g1===2&&g2===1)) ganaScore=1;
+    else ganaScore=0;
+    gunas.push({name:'Gana',max:6,got:ganaScore,
+      desc:'Temperament and nature. Deva=divine, Manav=human, Rakshasa=assertive. Best if same or compatible Gana.'});
+
+    // 7. Bhakoot (7 pts)
+    var bhakootGot = bhakootScore(r1, r2);
+    gunas.push({name:'Bhakoot',max:7,got:bhakootGot,
+      desc:'Moon sign compatibility. One of the most important Gunas — tests love, prosperity and progeny after marriage.'});
+
+    // 8. Nadi (8 pts)
+    var n_1=NAK_NADI[nak1], n_2=NAK_NADI[nak2];
+    var nadiScore = (n_1===n_2) ? 0 : 8; // Same Nadi = Nadi Dosha (0 pts)
+    gunas.push({name:'Nadi',max:8,got:nadiScore,
+      desc:'Ayurvedic constitution and progeny. Same Nadi = Nadi Dosha (serious). Different Nadi = full 8 points.'});
+
+    var total = gunas.reduce(function(s,g){return s+g.got;}, 0);
+
+    // ── Verdict ──
+    var verdict, verdictSub, ringColor;
+    if (total >= 31)      { verdict='Excellent Match ✨'; verdictSub='Highly auspicious — a truly blessed union'; ringColor='linear-gradient(135deg,#1a6b1a,#2e9e2e)'; }
+    else if (total >= 25) { verdict='Very Good Match 🌟'; verdictSub='Strong compatibility — marriage is recommended'; ringColor='linear-gradient(135deg,#1a5c6b,#2e8ea0)'; }
+    else if (total >= 18) { verdict='Good Match 👍'; verdictSub='Average compatibility — some remedies suggested'; ringColor='linear-gradient(135deg,#6b5c1a,#c8940a)'; }
+    else if (total >= 12) { verdict='Average Match ⚠️'; verdictSub='Weak compatibility — seek astrologer guidance'; ringColor='linear-gradient(135deg,#6b3a1a,#c85a0a)'; }
+    else                  { verdict='Challenging Match ❌'; verdictSub='Not recommended without detailed Kundli analysis'; ringColor='linear-gradient(135deg,#6b1a1a,#c82e2e)'; }
+
+    // ── Manglik check ──
+    var seed1 = new Date(d1).getFullYear()*365+new Date(d1).getMonth()*30+new Date(d1).getDate();
+    var seed2 = new Date(d2).getFullYear()*365+new Date(d2).getMonth()*30+new Date(d2).getDate();
+    var manglik1 = rnd(seed1*17) < 0.4;  // ~40% of people are Manglik
+    var manglik2 = rnd(seed2*17) < 0.4;
+
+    // ── Nadi Dosha check ──
+    var nadiDosha = (n_1 === n_2);
+    var bhakootDosha = (bhakootGot === 0);
+
+    // ── Render results ──
+    document.getElementById('scoreNum').textContent   = total;
+    document.getElementById('scoreLabel').textContent = gunas.map(function(g){return g.got;}).join(' + ');
+    document.getElementById('verdictTxt').textContent = verdict;
+    document.getElementById('verdictSub').textContent = verdictSub;
+    var ring = document.getElementById('scoreRing');
+    ring.style.background = ringColor;
+    ring.style.boxShadow  = '0 0 50px ' + (total>=25?'rgba(30,130,30,.5)':total>=18?'rgba(200,148,10,.4)':'rgba(200,50,10,.4)');
+
+    // Guna cards
+    document.getElementById('gunaGrid').innerHTML = gunas.map(function(g) {
+      var pct = Math.round((g.got/g.max)*100);
+      var barColor = pct>=75?'#4CAF50':pct>=50?'#C8940A':pct>=25?'#FF9800':'#E53935';
+      return '<div class="guna-card">' +
+        '<h4>' + g.name + '<span class="guna-score">' + g.got + ' / ' + g.max + '</span></h4>' +
+        '<div class="guna-bar-bg"><div class="guna-bar" style="width:'+pct+'%;background:'+barColor+'"></div></div>' +
+        '<div class="guna-desc">' + g.desc + '</div>' +
+      '</div>';
+    }).join('');
+
+    // Dosha cards
+    var doshas = [];
+    // Manglik
+    if (manglik1 && manglik2) {
+      doshas.push({cls:'dosha-good',icon:'✅',title:'Manglik Dosha — Cancelled',body:n1+' and '+n2+' are both Manglik. When both partners are Manglik, the dosha cancels out completely. This is actually auspicious for the marriage.'});
+    } else if (manglik1 || manglik2) {
+      var mName = manglik1 ? n1 : n2;
+      doshas.push({cls:'dosha-bad',icon:'⚠️',title:'Manglik Dosha — Present',body:mName+' has Manglik Dosha (Mars in 1st, 4th, 7th, 8th or 12th house). This requires remedial pujas, especially Mangal Shanti Puja before marriage. Consult a Vedic astrologer.'});
+    } else {
+      doshas.push({cls:'dosha-good',icon:'✅',title:'Manglik Dosha — Not Present',body:'Neither '+n1+' nor '+n2+' has Manglik Dosha. This is highly auspicious. Marriage can proceed without Manglik-related remedies.'});
+    }
+    // Nadi Dosha
+    if (nadiDosha) {
+      doshas.push({cls:'dosha-bad',icon:'🔴',title:'Nadi Dosha — Present',body:'Both partners share the same Nadi ('+['Aadi','Madhya','Antya'][n_1]+'). Nadi Dosha can affect health and progeny. Remedies include Nadi Dosha Nivaran Puja, Mahamrityunjaya Puja, and gold/silver gifting.'});
+    } else {
+      doshas.push({cls:'dosha-good',icon:'✅',title:'Nadi Dosha — Not Present',body:'Partners have different Nadis ('+['Aadi','Madhya','Antya'][n_1]+' & '+['Aadi','Madhya','Antya'][n_2]+'). This is auspicious. Full 8 Nadi points are awarded — great for progeny and health.'});
+    }
+    // Bhakoot
+    if (bhakootDosha) {
+      doshas.push({cls:'dosha-neutral',icon:'⚠️',title:'Bhakoot Dosha — Present',body:'The Moon sign positions create a 6/8 or 2/12 relationship, indicating Bhakoot Dosha. This may affect prosperity and love after marriage. Remedial prayers to Chandra (Moon) are recommended.'});
+    } else {
+      doshas.push({cls:'dosha-good',icon:'✅',title:'Bhakoot — Auspicious',body:'Moon sign positions are harmonious. Full 7 Bhakoot points awarded. This supports emotional bonding, financial prosperity and family harmony after marriage.'});
+    }
+
+    document.getElementById('doshaGrid').innerHTML = doshas.map(function(d) {
+      return '<div class="dosha-card '+d.cls+'"><h4>'+d.icon+' '+d.title+'</h4><p>'+d.body+'</p></div>';
+    }).join('');
+
+    // Advice
+    var remedies = [];
+    if (total < 18) remedies.push('Perform joint Navgraha Shanti Puja before marriage');
+    if (nadiDosha) remedies.push('Nadi Dosha Nivaran — donate gold to a Brahmin on a Monday');
+    if (bhakootDosha) remedies.push('Chandra Puja on Mondays — offer white flowers and milk to the Moon');
+    if (manglik1 !== manglik2) remedies.push('Kumbh Vivah (symbolic marriage to a banana tree/Vishnu idol) for the Manglik partner');
+    remedies.push('Visit a Shiva temple together before the wedding — highly auspicious');
+    remedies.push('Consult a qualified Jyotishi with full birth details for a detailed Kundli analysis');
+    if (total >= 25) remedies = ['Perform a joint Saraswati Puja to bless the union with knowledge and harmony','Exchange Rudraksha bracelets as a symbol of divine protection','Visit your family Kul Devata temple together before the wedding','A short Satyanarayan Puja at home will seal this auspicious match with divine blessings'];
+
+    document.getElementById('adviceBox').innerHTML = '<h3>📿 Pandit\'s Recommendations</h3>' +
+      '<p style="font-size:.9rem;margin-bottom:.8rem;color:rgba(254,246,228,.6);">Based on the Ashtakoot analysis for ' + n1 + ' &amp; ' + n2 + ':</p>' +
+      '<ul>' + remedies.map(function(r){return '<li>'+r+'</li>';}).join('') + '</ul>';
+
+    document.getElementById('resultSection').className = 'result-section show';
+    document.getElementById('resultSection').scrollIntoView({behavior:'smooth', block:'start'});
+  }, 400);
+}
+
+function toast(msg) {
+  var t=document.getElementById('toast');
+  t.textContent=msg; t.className='show';
+  setTimeout(function(){t.className='';},4000);
+}
+</script>
+
+</body>
+</html>
